@@ -21,6 +21,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     
     @IBOutlet weak var tableView: UITableView!
 
+    var matchingItems: [MKMapItem] = []
     var data = [Business]()
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -28,19 +29,27 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        searchController.searchResultsUpdater = self as UISearchResultsUpdating
-        tableView.tableHeaderView = searchController.searchBar
    
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        // Setup the Scope Bar
-        //searchController.searchBar.scopeButtonTitles = ["All", "Restaurant", "Other"]
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
         searchController.searchBar.delegate = self as? UISearchBarDelegate
         
-    
-        self.tableView.tableHeaderView = searchController.searchBar
-        self.tableView.reloadData()
+        
+       // self.tableView.tableHeaderView = searchController.searchBar
+        //self.tableView.reloadData()
+
+        
+//        tableView.tableHeaderView = searchController.searchBar
+//
+//        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchBar.sizeToFit()
+//        // Setup the Scope Bar
+//        //searchController.searchBar.scopeButtonTitles = ["All", "Restaurant", "Other"]
+//        searchController.searchBar.delegate = self as? UISearchBarDelegate
+//
+//
+//        self.tableView.tableHeaderView = searchController.searchBar
+//        self.tableView.reloadData()
 
         
         /*loadData{ [weak self] business in
@@ -66,22 +75,30 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return data.count
+       return data.count
+       // return matchingItems.count
     }
+    
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let business = data[indexPath.row]
-        
+
         let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
-        
+
         return cell
+
     }
     
    
 
+   
+    
 }
 
-
+/*extension BusinessMasterController : UINavigationController
+{
+    
+}*/
 extension BusinessMasterController : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -96,11 +113,20 @@ extension BusinessMasterController : UISearchResultsUpdating {
                 return
             }
             
+            self.matchingItems = response.mapItems
+            var test = self.matchingItems[0].placemark.name
+            //self.tableView.reloadData()
+            
+            for item in response.mapItems {
+                print("Name = \(item.name ?? "")")
+                print("Phone = \(item.phoneNumber ?? "")")
+            }
+            
             self.loadData( location: searchText!,resultsLoaded: { business in
                 self.data = business
                 self.DataReceived()
             })
-            //var matchingItems = response.mapItems
+            
         })
     }
     
@@ -114,24 +140,6 @@ extension BusinessMasterController : UISearchResultsUpdating {
     }
 
     
-   /* func updateSearchResults(searchController: UISearchController) {
-        guard let mapView = mapView,
-            let searchBarText = searchController.searchBar.text else { return }
-        
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchBarText
-        request.region = mapView.region
-        let search = MKLocalSearch(request: request)
-        
-        search.startWithCompletionHandler { response, _ in
-            guard let response = response else {
-                return
-            }
-            self.matchingItems = response.mapItems
-            //self.tableView.reloadData()
-        }
-        
-    }*/
     
 }
 
