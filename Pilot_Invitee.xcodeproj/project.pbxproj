@@ -10,6 +10,7 @@
 		3AE69F956493231DF152B314 /* Pods_Pilot_Invitee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */; };
 		900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D11F76C0E400F93496 /* LocationSearchController.swift */; };
 		900A06D41F76C79D00F93496 /* LocationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D31F76C79D00F93496 /* LocationDataSource.swift */; };
+		90D0C9B81F78733700B80694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0C9B71F78733700B80694 /* Extensions.swift */; };
 		90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA381F6C066200583DB2 /* AppDelegate.swift */; };
 		90DAFA3E1F6C066200583DB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DAFA3C1F6C066200583DB2 /* Main.storyboard */; };
 		90DAFA401F6C066200583DB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90DAFA3F1F6C066200583DB2 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pilot_Invitee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900A06D11F76C0E400F93496 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchController.swift; path = Pilot_Invitee/UI/LocationSearchController.swift; sourceTree = "<group>"; };
 		900A06D31F76C79D00F93496 /* LocationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationDataSource.swift; path = Pilot_Invitee/UI/LocationDataSource.swift; sourceTree = "<group>"; };
+		90D0C9B71F78733700B80694 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		90DAFA351F6C066200583DB2 /* Pilot_Invitee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pilot_Invitee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90DAFA381F6C066200583DB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90DAFA3D1F6C066200583DB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,9 +121,18 @@
 			name = LocationController;
 			sourceTree = "<group>";
 		};
+		90D0C9B61F78729400B80694 /* Supporting Classes */ = {
+			isa = PBXGroup;
+			children = (
+				90D0C9B71F78733700B80694 /* Extensions.swift */,
+			);
+			path = "Supporting Classes";
+			sourceTree = "<group>";
+		};
 		90DAFA2C1F6C066200583DB2 = {
 			isa = PBXGroup;
 			children = (
+				90D0C9B61F78729400B80694 /* Supporting Classes */,
 				90DAFA6F1F6D8C1100583DB2 /* Model */,
 				90DAFA691F6D8A6300583DB2 /* UI */,
 				90DAFA371F6C066200583DB2 /* Pilot_Invitee */,
@@ -428,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90DAFA681F6C2BEC00583DB2 /* NetworkLayer.swift in Sources */,
+				90D0C9B81F78733700B80694 /* Extensions.swift in Sources */,
 				90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */,
 				90DAFA6E1F6D8BCB00583DB2 /* BusinessDetailController.swift in Sources */,
 				90DAFA6B1F6D8B1800583DB2 /* BusinessMasterController.swift in Sources */,

@@ -16,7 +16,7 @@ import MapKit
 
 typealias BusinessBlock = ([Business])->Void
 
-class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
+class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, LocationSearchedDelegate {
    
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,11 +25,23 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     var data = [Business]()
     let searchController = UISearchController(searchResultsController: nil)
     
+    let locationController = LocationSearchController()
+    var locationSearched : String = ""
+  
+    
+    
+//
+//    required init?(coder aDecoder: NSCoder) {
+//       // fatalError("init(coder:) has not been implemented")
+//       // super.init()
+//
+//    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-   
+        locationController.businessDelegate = self
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
         searchController.searchBar.delegate = self as? UISearchBarDelegate
@@ -58,6 +70,12 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         }*/
         
         BusinessCell.register(with: tableView)
+        
+       self.loadData( location: locationSearched,resultsLoaded: { business in
+            self.data = business
+            self.DataReceived()
+        })
+ 
     }
     
     func DataReceived() {
@@ -95,10 +113,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     
 }
 
-/*extension BusinessMasterController : UINavigationController
-{
-    
-}*/
+
 extension BusinessMasterController : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -114,7 +129,6 @@ extension BusinessMasterController : UISearchResultsUpdating {
             }
             
             self.matchingItems = response.mapItems
-            var test = self.matchingItems[0].placemark.name
             //self.tableView.reloadData()
             
             for item in response.mapItems {
@@ -162,9 +176,13 @@ extension BusinessMasterController{
 extension BusinessMasterController {
     
     func createBusinesssFromJsonData(_ data: Data) -> [Business] {
+        
         print("converting json to DTOs")
         let json:[String: Any] = try! JSON.value(from: data)
-        let businesses: [Business] = try! json.value(for: "businesses")
+        guard let businesses: [Business] = try! json.value(for: "businesses")
+        else
+        {return [Business]()}
+        
         return businesses
 }
 }
@@ -178,7 +196,10 @@ extension BusinessMasterController {
         
         var locationURL : String
         locationURL = "https://api.yelp.com/v3/businesses/search?location=" + location
-        //if let url = URL(string: "https://api.yelp.com/v3/businesses/search?location=Teaneck") {
+        
+       // locationURL = https://api.yelp.com/v3/businesses/search?location=Millburn, NJ, United States
+        locationURL = locationURL.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        //if let url = URL(string: "https://api.yelp.com/v3/businesses/search?location=Millburn, NJ, United States") {
         if let url = URL(string: locationURL) {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = HTTPMethod.get.rawValue
@@ -223,6 +244,30 @@ extension BusinessMasterController {
        
     }
     
+}
+
+extension BusinessMasterController
+{
+    func loadBusinessForLocation(  selectedLocation : String)
+    {
+        locationController.navigationController?.popViewController(animated: true)
+        
+        self.loadData( location: selectedLocation,resultsLoaded: { business in
+            self.data = business
+            self.DataReceived()
+        })
+    }
+}
+
+
+extension BusinessMasterController{
+    static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController
+    {
+        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "businessMasterController") as! BusinessMasterController
+        vc.locationSearched = locationSearched
+        
+        return vc
+    }
 }
 
 

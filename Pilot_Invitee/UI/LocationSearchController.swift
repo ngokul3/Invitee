@@ -21,6 +21,8 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     
     let dataSource = LocationDataSource()
 
+    weak var businessDelegate: LocationSearchedDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +40,13 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
         
         title = "Location Search"
         
-        dataSource.delegate = self
+        dataSource.locationDelegate = self
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
         
         manager.delegate = dataSource
 
+        dataSource.viewController = self
        
     }
 
@@ -57,5 +60,30 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
         tableView.reloadData()
     }
    
-
+    func popNextController(location : String, cell : UITableViewCell)
+    {
+        
+        let businessMasterController = BusinessMasterController.fromLocationStoryboard(with : location)
+        
+        navigationController?.pushViewController(businessMasterController, animated: true)
+  //      let x = BusinessMasterController(nibName: nil, bundle: nil)
+        
+    //    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    //    let newViewController = storyBoard.instantiateViewController(withIdentifier: "businessMasterController") as! BusinessMasterController
+      //  self.present(newViewController, animated: true, completion: nil)
+        
+        
+      //  self.navigationController?.pushViewController(x, animated: true)
+        // businessDelegate?.loadBusinessForLocation( selectedLocation : location)
+    }
+    
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "locationToBusinessSegue") {
+            
+            let controller = segue.destination as! BusinessMasterController
+            controller.locationSearched = "Springfield"
+            //Configure controller attributes.
+        }
+    }
 }

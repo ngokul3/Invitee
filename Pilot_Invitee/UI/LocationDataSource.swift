@@ -11,9 +11,15 @@ import MapKit
 protocol LocationDataSourceDelegate: class{
     
     func refreshData()
-    
+    func popNextController(location : String, cell : UITableViewCell)
     
 }
+
+protocol LocationSearchedDelegate: class{
+    func loadBusinessForLocation( selectedLocation: String)
+}
+
+
 
 
 class LocationDataSource:NSObject{
@@ -25,7 +31,9 @@ class LocationDataSource:NSObject{
     
     var places = [MKLocalSearchCompletion]()
     
-    weak var delegate:LocationDataSourceDelegate?
+    weak var locationDelegate:LocationDataSourceDelegate?
+    //weak var businessDelegate: LocationSearchedDelegate?
+    var viewController =  UIViewController()
     
     override init() {
         super.init()
@@ -112,16 +120,26 @@ extension LocationDataSource:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = locationAt(index: indexPath)
+        
+        
         let request = MKLocalSearchRequest()
+        
+        
+         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         request.naturalLanguageQuery = item.subtitle
-        let search = MKLocalSearch(request: request)
+        
+        
+        
+        locationDelegate?.popNextController(location : request.naturalLanguageQuery! ,cell : cell)
+        // businessDelegate?.loadBusinessForLocation(locationController: self.viewController, selectedLocation : item.subtitle)
+        /*let search = MKLocalSearch(request: request)
         search.start { (response, error) in
             
             guard let response = response else {return}
             guard let item = response.mapItems.first else {return}
             
             item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-        }
+        }*/
     }
 }
 
@@ -131,7 +149,7 @@ extension LocationDataSource:MKLocalSearchCompleterDelegate{
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         places = completer.results
         
-        delegate?.refreshData()
+        locationDelegate?.refreshData()
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
