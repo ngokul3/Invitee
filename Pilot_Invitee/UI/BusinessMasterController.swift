@@ -9,42 +9,31 @@
 import UIKit
 import Toaster
 import Foundation
-import Alamofire
-import CoreData
-import Outlaw
-import MapKit
+
 
 typealias BusinessBlock = ([Business])->Void
 
-class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, LocationSearchedDelegate {
+class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
    
     
     @IBOutlet weak var tableView: UITableView!
 
-    var matchingItems: [MKMapItem] = []
-    var data = [Business]()
+  //  var matchingItems: [MKMapItem] = []
+    //var data = [Business]()
     let searchController = UISearchController(searchResultsController: nil)
     
     let locationController = LocationSearchController()
     var locationSearched : String = ""
-  
-    
-    
-//
-//    required init?(coder aDecoder: NSCoder) {
-//       // fatalError("init(coder:) has not been implemented")
-//       // super.init()
-//
-//    }
+    var businessMasterPresenter : BusinessMasterPresenter!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationController.businessDelegate = self
-        searchController.searchResultsUpdater = self
-        self.navigationItem.searchController = searchController
-        searchController.searchBar.delegate = self as? UISearchBarDelegate
+   //     locationController.businessDelegate = self
+    //    searchController.searchResultsUpdater = self as! UISearchResultsUpdating
+    //    self.navigationItem.searchController = searchController
+      //  searchController.searchBar.delegate = self as? UISearchBarDelegate
         
         
        // self.tableView.tableHeaderView = searchController.searchBar
@@ -69,10 +58,11 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
             self?.DataReceived()
         }*/
         
+        businessMasterPresenter = BusinessMasterPresenter()
         BusinessCell.register(with: tableView)
         
-       self.loadData( location: locationSearched,resultsLoaded: { business in
-            self.data = business
+       businessMasterPresenter.loadData( location: locationSearched,resultsLoaded: { business in
+        self.businessMasterPresenter.data = business
             self.DataReceived()
         })
  
@@ -93,13 +83,13 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return data.count
+       return businessMasterPresenter.data.count
        // return matchingItems.count
     }
     
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let business = data[indexPath.row]
+        let business = businessMasterPresenter.data[indexPath.row]
 
         let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
 
@@ -112,7 +102,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
    
     
 }
-
+/*
 
 extension BusinessMasterController : UISearchResultsUpdating {
     
@@ -157,108 +147,7 @@ extension BusinessMasterController : UISearchResultsUpdating {
     
 }
 
-
-
-extension BusinessMasterController{
-    func loadData(location: String, resultsLoaded: @escaping  BusinessBlock)
-    {
-        
-        loadFromNetwork(location: location,finished: { data in
-            let businesses = self.createBusinesssFromJsonData(data)
-            
-            resultsLoaded( businesses)
-            
-        })
-
-    }
-}
-
-extension BusinessMasterController {
-    
-    func createBusinesssFromJsonData(_ data: Data) -> [Business] {
-        
-        print("converting json to DTOs")
-        let json:[String: Any] = try! JSON.value(from: data)
-        guard let businesses: [Business] = try! json.value(for: "businesses")
-        else
-        {return [Business]()}
-        
-        return businesses
-}
-}
-
-//MARK: - Network Methods
-extension BusinessMasterController {
-    
-    
-    func loadFromNetwork(location: String, finished: @escaping (Data) -> Void) {
-        let MY_API_KEY = "Bearer qEjtERYCtGRtYmaELAxisLtdM2TWMsUbLG-wvs0b8KlxIfECiKGRrnY7AKOZwe6Zsz_DehvIAXJtt4jiIrKYjCgyf0Tx4CK_yX0u-6LpOc35By8TiyGlLdElXgqzWXYx"
-        
-        var locationURL : String
-        locationURL = "https://api.yelp.com/v3/businesses/search?location=" + location
-        
-       // locationURL = https://api.yelp.com/v3/businesses/search?location=Millburn, NJ, United States
-        locationURL = locationURL.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
-        //if let url = URL(string: "https://api.yelp.com/v3/businesses/search?location=Millburn, NJ, United States") {
-        if let url = URL(string: locationURL) {
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = HTTPMethod.get.rawValue
-            
-            urlRequest.addValue(MY_API_KEY, forHTTPHeaderField: "Authorization")
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-            Alamofire.request(urlRequest)
-                .responseJSON { response in
-                    debugPrint(response)
-                    
-                    guard let data = response.data else { return }
-                    
-                    finished(data)
-                    /* guard (response.result.value as? [String: Any]) != nil else { return }
-                    
-                    
-                    
-                    guard let value = response.result.value as? [String: Any],
-                        let rows = value["businesses"] as? [[String: Any]] else {
-                            print("Malformed data received from fetchAllRooms service")
-                           finished(rows)
-                           // return
-                    }*/
-                    
-                   /* let businesses = rows.flatMap({ (businessDict) -> Business? in
-                        
-                        let _ = businessDict
-                       // return Business(name: businessDict., rating: <#String#>)
-                        
-                        return Business(name: businessDict["name"], rating: businessDict["rating"])
-                    })
-                    
-                    */
-                    
-                    
-                    
-            }
-        }
-        
-        print("loading data from server")
-       
-    }
-    
-}
-
-extension BusinessMasterController
-{
-    func loadBusinessForLocation(  selectedLocation : String)
-    {
-        locationController.navigationController?.popViewController(animated: true)
-        
-        self.loadData( location: selectedLocation,resultsLoaded: { business in
-            self.data = business
-            self.DataReceived()
-        })
-    }
-}
-
+*/
 
 extension BusinessMasterController{
     static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController

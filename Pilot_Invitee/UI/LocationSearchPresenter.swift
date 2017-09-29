@@ -22,7 +22,7 @@ protocol LocationSearchedDelegate: class{
 
 
 
-class LocationDataSource:NSObject{
+class LocationSearchPresenter:NSObject{
     
     private var search:MKLocalSearch? =  nil
     
@@ -57,7 +57,7 @@ class LocationDataSource:NSObject{
     
 }
 
-extension LocationDataSource:CLLocationManagerDelegate{
+extension LocationSearchPresenter:CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch  status {
@@ -83,7 +83,7 @@ extension LocationDataSource:CLLocationManagerDelegate{
     }
     
 }
-extension LocationDataSource:UITableViewDataSource{
+extension LocationSearchPresenter:UITableViewDataSource{
     
     
     
@@ -116,7 +116,7 @@ extension LocationDataSource:UITableViewDataSource{
     
 }
 
-extension LocationDataSource:UITableViewDelegate{
+extension LocationSearchPresenter:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = locationAt(index: indexPath)
@@ -144,7 +144,7 @@ extension LocationDataSource:UITableViewDelegate{
 }
 
 
-extension LocationDataSource:MKLocalSearchCompleterDelegate{
+extension LocationSearchPresenter:MKLocalSearchCompleterDelegate{
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         places = completer.results
@@ -159,7 +159,7 @@ extension LocationDataSource:MKLocalSearchCompleterDelegate{
 }
 
 
-extension LocationDataSource:UISearchBarDelegate{
+extension LocationSearchPresenter:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
