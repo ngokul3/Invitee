@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3AE69F956493231DF152B314 /* Pods_Pilot_Invitee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */; };
+		90066AD81F7F18880019A637 /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066AD71F7F18880019A637 /* TranslationLayer.swift */; };
+		90066ADA1F7F1A860019A637 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066AD91F7F1A860019A637 /* ModelLayer.swift */; };
 		900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D11F76C0E400F93496 /* LocationSearchController.swift */; };
 		900A06D41F76C79D00F93496 /* LocationSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */; };
 		901512741F7DCD8E00C388CF /* BusinessMasterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		1F7ECF2614FD3AA4C3141EFE /* Pods-Pilot_Invitee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pilot_Invitee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pilot_Invitee/Pods-Pilot_Invitee.debug.xcconfig"; sourceTree = "<group>"; };
 		38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pilot_Invitee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90066AD71F7F18880019A637 /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslationLayer.swift; path = Pilot_Invitee/Translation/TranslationLayer.swift; sourceTree = "<group>"; };
+		90066AD91F7F1A860019A637 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelLayer.swift; path = Pilot_Invitee/Model/ModelLayer.swift; sourceTree = "<group>"; };
 		900A06D11F76C0E400F93496 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchController.swift; path = Pilot_Invitee/UI/LocationSearchController.swift; sourceTree = "<group>"; };
 		900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchPresenter.swift; path = Pilot_Invitee/UI/LocationSearchPresenter.swift; sourceTree = "<group>"; };
 		901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessMasterPresenter.swift; path = Pilot_Invitee/UI/BusinessMasterPresenter.swift; sourceTree = "<group>"; };
@@ -112,6 +116,14 @@
 				92F88533AE3D57E9FFF63A84 /* Pods-Pilot_Invitee.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		90066AD61F7F18450019A637 /* Translation */ = {
+			isa = PBXGroup;
+			children = (
+				90066AD71F7F18880019A637 /* TranslationLayer.swift */,
+			);
+			name = Translation;
 			sourceTree = "<group>";
 		};
 		900A06D01F769EBD00F93496 /* LocationController */ = {
@@ -217,8 +229,10 @@
 		90DAFA6F1F6D8C1100583DB2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				90066AD61F7F18450019A637 /* Translation */,
 				90DAFA661F6C2BB400583DB2 /* Network */,
 				90DAFA721F6D8CB500583DB2 /* Business.swift */,
+				90066AD91F7F1A860019A637 /* ModelLayer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -442,9 +456,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				90DAFA681F6C2BEC00583DB2 /* NetworkLayer.swift in Sources */,
+				90066ADA1F7F1A860019A637 /* ModelLayer.swift in Sources */,
 				90D0C9B81F78733700B80694 /* Extensions.swift in Sources */,
 				90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */,
 				90DAFA6E1F6D8BCB00583DB2 /* BusinessDetailController.swift in Sources */,
+				90066AD81F7F18880019A637 /* TranslationLayer.swift in Sources */,
 				90DAFA6B1F6D8B1800583DB2 /* BusinessMasterController.swift in Sources */,
 				90DAFA731F6D8CB500583DB2 /* Business.swift in Sources */,
 				900A06D41F76C79D00F93496 /* LocationSearchPresenter.swift in Sources */,

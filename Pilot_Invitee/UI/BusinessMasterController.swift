@@ -7,22 +7,16 @@
 //
 
 import UIKit
-import Toaster
 import Foundation
 
-
-typealias BusinessBlock = ([Business])->Void
 
 class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
    
     
     @IBOutlet weak var tableView: UITableView!
 
-  //  var matchingItems: [MKMapItem] = []
-    //var data = [Business]()
     let searchController = UISearchController(searchResultsController: nil)
     
-    let locationController = LocationSearchController()
     var locationSearched : String = ""
     var businessMasterPresenter : BusinessMasterPresenter!
     
@@ -30,65 +24,34 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-   //     locationController.businessDelegate = self
-    //    searchController.searchResultsUpdater = self as! UISearchResultsUpdating
+     //    searchController.searchResultsUpdater = self as! UISearchResultsUpdating
     //    self.navigationItem.searchController = searchController
       //  searchController.searchBar.delegate = self as? UISearchBarDelegate
-        
-        
        // self.tableView.tableHeaderView = searchController.searchBar
         //self.tableView.reloadData()
-
-        
 //        tableView.tableHeaderView = searchController.searchBar
-//
-//        searchController.dimsBackgroundDuringPresentation = false
-//        searchController.searchBar.sizeToFit()
-//        // Setup the Scope Bar
-//        //searchController.searchBar.scopeButtonTitles = ["All", "Restaurant", "Other"]
-//        searchController.searchBar.delegate = self as? UISearchBarDelegate
-//
-//
-//        self.tableView.tableHeaderView = searchController.searchBar
-//        self.tableView.reloadData()
 
-        
-        /*loadData{ [weak self] business in
-            self?.data = business
-            self?.DataReceived()
-        }*/
-        
         businessMasterPresenter = BusinessMasterPresenter()
         BusinessCell.register(with: tableView)
-        
-       businessMasterPresenter.loadData( location: locationSearched,resultsLoaded: { business in
-        self.businessMasterPresenter.data = business
+   
+        businessMasterPresenter.loadData( location: locationSearched, finished: {
             self.DataReceived()
         })
- 
     }
     
     func DataReceived() {
-        //Toast(text: "New Data from \(source)").show()
         tableView.reloadData()
     }
-
-    
-    // MARK: - Table view data source
-
      func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
        return businessMasterPresenter.data.count
-       // return matchingItems.count
     }
-    
-    
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let business = businessMasterPresenter.data[indexPath.row]
 
         let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
@@ -96,11 +59,16 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         return cell
 
     }
-    
-   
+}
 
-   
-    
+extension BusinessMasterController{
+    static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController
+    {
+        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "businessMasterController") as! BusinessMasterController
+        vc.locationSearched = locationSearched
+        
+        return vc
+    }
 }
 /*
 
@@ -149,14 +117,5 @@ extension BusinessMasterController : UISearchResultsUpdating {
 
 */
 
-extension BusinessMasterController{
-    static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController
-    {
-        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "businessMasterController") as! BusinessMasterController
-        vc.locationSearched = locationSearched
-        
-        return vc
-    }
-}
 
 

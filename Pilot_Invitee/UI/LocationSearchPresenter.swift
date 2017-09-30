@@ -51,10 +51,6 @@ class LocationSearchPresenter:NSObject{
         
     }
     
-    
-    
-    
-    
 }
 
 extension LocationSearchPresenter:CLLocationManagerDelegate{
@@ -85,9 +81,6 @@ extension LocationSearchPresenter:CLLocationManagerDelegate{
 }
 extension LocationSearchPresenter:UITableViewDataSource{
     
-    
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -104,7 +97,6 @@ extension LocationSearchPresenter:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        // Configure the cell...
         let item = locationAt(index: indexPath)
         
         cell.textLabel?.text = item.title
@@ -120,26 +112,11 @@ extension LocationSearchPresenter:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = locationAt(index: indexPath)
-        
-        
         let request = MKLocalSearchRequest()
-        
-        
-         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         request.naturalLanguageQuery = item.subtitle
-        
-        
-        
         locationDelegate?.popNextController(location : request.naturalLanguageQuery! ,cell : cell)
-        // businessDelegate?.loadBusinessForLocation(locationController: self.viewController, selectedLocation : item.subtitle)
-        /*let search = MKLocalSearch(request: request)
-        search.start { (response, error) in
-            
-            guard let response = response else {return}
-            guard let item = response.mapItems.first else {return}
-            
-            item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-        }*/
+       
     }
 }
 
