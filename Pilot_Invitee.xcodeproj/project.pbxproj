@@ -10,6 +10,9 @@
 		3AE69F956493231DF152B314 /* Pods_Pilot_Invitee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */; };
 		90066AD81F7F18880019A637 /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066AD71F7F18880019A637 /* TranslationLayer.swift */; };
 		90066ADA1F7F1A860019A637 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066AD91F7F1A860019A637 /* ModelLayer.swift */; };
+		90066ADE1F812AA40019A637 /* DependencyRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066ADD1F812AA40019A637 /* DependencyRegistry.swift */; };
+		90066AE01F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066ADF1F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift */; };
+		90066AE21F815FED0019A637 /* BusinessCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066AE11F815FED0019A637 /* BusinessCellPresenter.swift */; };
 		900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D11F76C0E400F93496 /* LocationSearchController.swift */; };
 		900A06D41F76C79D00F93496 /* LocationSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */; };
 		901512741F7DCD8E00C388CF /* BusinessMasterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */; };
@@ -50,6 +53,10 @@
 		38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pilot_Invitee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90066AD71F7F18880019A637 /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslationLayer.swift; path = Pilot_Invitee/Translation/TranslationLayer.swift; sourceTree = "<group>"; };
 		90066AD91F7F1A860019A637 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelLayer.swift; path = Pilot_Invitee/Model/ModelLayer.swift; sourceTree = "<group>"; };
+		90066ADB1F812A5B0019A637 /* Injection */ = {isa = PBXFileReference; lastKnownFileType = text; name = Injection; path = "../../../../Lynda Downloads/iOS Architecture/Ex_Files_iOS_App_Patterns_Architecture/Exercise Files/Ch05/05_05_Finished/KnownSpys/Injection"; sourceTree = "<group>"; };
+		90066ADD1F812AA40019A637 /* DependencyRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyRegistry.swift; sourceTree = "<group>"; };
+		90066ADF1F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Extensions.swift"; sourceTree = "<group>"; };
+		90066AE11F815FED0019A637 /* BusinessCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessCellPresenter.swift; path = Pilot_Invitee/UI/BusinessCellPresenter.swift; sourceTree = "<group>"; };
 		900A06D11F76C0E400F93496 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchController.swift; path = Pilot_Invitee/UI/LocationSearchController.swift; sourceTree = "<group>"; };
 		900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchPresenter.swift; path = Pilot_Invitee/UI/LocationSearchPresenter.swift; sourceTree = "<group>"; };
 		901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessMasterPresenter.swift; path = Pilot_Invitee/UI/BusinessMasterPresenter.swift; sourceTree = "<group>"; };
@@ -126,6 +133,15 @@
 			name = Translation;
 			sourceTree = "<group>";
 		};
+		90066ADC1F812A680019A637 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				90066ADD1F812AA40019A637 /* DependencyRegistry.swift */,
+				90066ADF1F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
 		900A06D01F769EBD00F93496 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +162,8 @@
 		90DAFA2C1F6C066200583DB2 = {
 			isa = PBXGroup;
 			children = (
+				90066ADC1F812A680019A637 /* Dependencies */,
+				90066ADB1F812A5B0019A637 /* Injection */,
 				90D0C9B61F78729400B80694 /* Supporting Classes */,
 				90DAFA6F1F6D8C1100583DB2 /* Model */,
 				90DAFA691F6D8A6300583DB2 /* UI */,
@@ -242,6 +260,7 @@
 			children = (
 				90DAFA791F6DB37B00583DB2 /* BusinessCell.swift */,
 				90DAFA7A1F6DB37B00583DB2 /* BusinessCell.xib */,
+				90066AE11F815FED0019A637 /* BusinessCellPresenter.swift */,
 			);
 			name = BusinessCell;
 			sourceTree = "<group>";
@@ -457,6 +476,9 @@
 			files = (
 				90DAFA681F6C2BEC00583DB2 /* NetworkLayer.swift in Sources */,
 				90066ADA1F7F1A860019A637 /* ModelLayer.swift in Sources */,
+				90066ADE1F812AA40019A637 /* DependencyRegistry.swift in Sources */,
+				90066AE01F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift in Sources */,
+				90066AE21F815FED0019A637 /* BusinessCellPresenter.swift in Sources */,
 				90D0C9B81F78733700B80694 /* Extensions.swift in Sources */,
 				90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */,
 				90DAFA6E1F6D8BCB00583DB2 /* BusinessDetailController.swift in Sources */,

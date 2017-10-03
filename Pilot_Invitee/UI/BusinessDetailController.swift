@@ -8,8 +8,24 @@
 
 import UIKit
 
+protocol  BusinessDelegate {
+    func AddtoNotification(businessItem : Business)
+    func ViewBusinessDone()
+    
+}
 class BusinessDetailController: UIViewController {
 
+   // private var delegate : BusinessDelegate
+   /* init(delegate : BusinessDelegate)
+    {
+        self.delegate = delegate
+        super.init()//
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
 

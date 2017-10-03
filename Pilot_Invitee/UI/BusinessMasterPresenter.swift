@@ -13,13 +13,27 @@ import Foundation
 import MapKit
 
 typealias FinishedBlock = ()->Void
-class BusinessMasterPresenter{
+
+protocol BusinessMasterPresenter{
+    var data : [Business]{get set}
+    var location : String {get}
+    func loadData(finished: @escaping FinishedBlock )
+}
+class BusinessMasterPresenterImpl: BusinessMasterPresenter{
     
     var matchingItems: [MKMapItem] = []
     var data = [Business]()
-    var modelLayer = ModelLayer()
+    var modelLayer : ModelLayer
     
-    func loadData(location: String, finished: @escaping FinishedBlock )
+    var location: String
+    
+    init(modelLayer : ModelLayer, location : String)
+    {
+        self.modelLayer = modelLayer
+        self.location = location
+    }
+    
+    func loadData(finished: @escaping FinishedBlock )
     {
         
         modelLayer.loadData(location: location,resultsLoaded: { businesses in

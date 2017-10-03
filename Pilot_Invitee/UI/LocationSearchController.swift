@@ -13,28 +13,30 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
-    private var locationPresenter : LocationSearchPresenter!
+    fileprivate var presenter : LocationSearchPresenter!
+    fileprivate var businessMasterControllerMaker: DependencyRegistry.BusinessMasterControllerMaker!
     
     var searchController = UISearchController(searchResultsController: nil)
-   // var matchingItems: [MKMapItem] = []
-    
-    //private let manager = CLLocationManager()
-    
-   // let dataSource = LocationDataSource()
-
+   
     weak var businessDelegate: LocationSearchedDelegate?
     
     
+    func configure(with presenter: LocationSearchPresenter, businessMasterControllerMaker : @escaping DependencyRegistry.BusinessMasterControllerMaker)
+    {
+        self.presenter = presenter
+        self.businessMasterControllerMaker = businessMasterControllerMaker
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationPresenter = LocationSearchPresenter()
+       // presenter = LocationSearchPresenter()
 
         searchController.searchBar.delegate = self as? UISearchBarDelegate
         
         searchController =  UISearchController(searchResultsController:nil )
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = UISearchBarStyle.minimal
-        searchController.searchBar.delegate = locationPresenter
+        searchController.searchBar.delegate = presenter as? UISearchBarDelegate
         searchController.isActive = true
         tableView.tableHeaderView = searchController.searchBar
         searchController.dimsBackgroundDuringPresentation = false
@@ -42,20 +44,16 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
         
         title = "Location Search"
         
-        locationPresenter.locationDelegate = self
-        tableView.dataSource = locationPresenter
-        tableView.delegate = locationPresenter
+        presenter.locationDelegate = self
+        tableView.dataSource = presenter as? UITableViewDataSource
+        tableView.delegate = presenter as? UITableViewDelegate
         
        // manager.delegate = dataSource
 
-        locationPresenter.viewController = self
+        presenter.viewController = self
        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     func refreshData()
     {
@@ -65,7 +63,7 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     func popNextController(location : String, cell : UITableViewCell)
     {
         
-        let businessMasterController = BusinessMasterController.fromLocationStoryboard(with : location)
+        let businessMasterController = businessMasterControllerMaker(ModelLayerImpl(networkLayer: NetworkLayerImpl(), translationLayer: TranslationLayerImpl()),  location)
         
         navigationController?.pushViewController(businessMasterController, animated: true)
   

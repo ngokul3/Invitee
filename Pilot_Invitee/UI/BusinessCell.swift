@@ -10,7 +10,7 @@ import UIKit
 
 class BusinessCell: UITableViewCell {
 
-  //  @IBOutlet weak var lblRating: UILabel!
+    fileprivate var presenter : BusinessCellPresenter!
     
     @IBOutlet weak var lblName: UILabel!
     var business: Business!
@@ -29,8 +29,6 @@ class BusinessCell: UITableViewCell {
 }
 
 extension BusinessCell {
-    
-    
     func set(name: String) {
         lblName.text = name
        // nameValueLabel.accessibilityValue = name
@@ -39,24 +37,15 @@ extension BusinessCell {
    
 }
     
-
-
-
-
 extension BusinessCell {
-    func configure(with business: Business) {
+    func configure(with presenter: BusinessCellPresenter) {
        
-        self.set(name: business.name)
+        self.set(name: presenter.name)
         
         }
     }
     
-    
 
-
-
-
-//MARK: - Helper Methods
 extension BusinessCell {
     public static var cellId: String {
         return "BusinessCell"
@@ -78,7 +67,7 @@ extension BusinessCell {
         return bundle.loadNibNamed(BusinessCell.cellId, owner: owner, options: nil)?.first as! BusinessCell
     }
     
-    public static func dequeue(from tableView: UITableView, for indexPath: IndexPath, with business: Business) -> BusinessCell {
+    public static func dequeue(from tableView: UITableView, for indexPath: IndexPath, with business: BusinessCellPresenter) -> BusinessCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BusinessCell.cellId, for: indexPath) as! BusinessCell
         cell.configure(with: business)
         return cell

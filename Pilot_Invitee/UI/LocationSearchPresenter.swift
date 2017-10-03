@@ -20,24 +20,30 @@ protocol LocationSearchedDelegate: class{
 }
 
 
+protocol  LocationSearchPresenter {
+    weak var locationDelegate:LocationDataSourceDelegate?{get set}
+    var viewController :  UIViewController{set get}
+    func loadData()
+}
 
 
-class LocationSearchPresenter:NSObject{
+class LocationSearchPresenterImpl:NSObject, LocationSearchPresenter {
     
     private var search:MKLocalSearch? =  nil
     
-    
+    var viewController =  UIViewController()
     var searchCompleter = MKLocalSearchCompleter()
     
     var places = [MKLocalSearchCompletion]()
     
     weak var locationDelegate:LocationDataSourceDelegate?
     //weak var businessDelegate: LocationSearchedDelegate?
-    var viewController =  UIViewController()
+    
     
     override init() {
         super.init()
         searchCompleter.delegate = self
+        //viewController = UIViewController()
         
     }
     
@@ -53,7 +59,7 @@ class LocationSearchPresenter:NSObject{
     
 }
 
-extension LocationSearchPresenter:CLLocationManagerDelegate{
+extension LocationSearchPresenterImpl:CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch  status {
@@ -79,7 +85,7 @@ extension LocationSearchPresenter:CLLocationManagerDelegate{
     }
     
 }
-extension LocationSearchPresenter:UITableViewDataSource{
+extension LocationSearchPresenterImpl:UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -108,7 +114,7 @@ extension LocationSearchPresenter:UITableViewDataSource{
     
 }
 
-extension LocationSearchPresenter:UITableViewDelegate{
+extension LocationSearchPresenterImpl:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = locationAt(index: indexPath)
@@ -121,14 +127,18 @@ extension LocationSearchPresenter:UITableViewDelegate{
 }
 
 
-extension LocationSearchPresenter:MKLocalSearchCompleterDelegate{
+extension LocationSearchPresenterImpl:MKLocalSearchCompleterDelegate{
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         places = completer.results
+        loadData()
         
-        locationDelegate?.refreshData()
     }
     
+    func loadData()
+    {
+        locationDelegate?.refreshData()
+    }
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         
         
@@ -136,7 +146,7 @@ extension LocationSearchPresenter:MKLocalSearchCompleterDelegate{
 }
 
 
-extension LocationSearchPresenter:UISearchBarDelegate{
+extension LocationSearchPresenterImpl:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText

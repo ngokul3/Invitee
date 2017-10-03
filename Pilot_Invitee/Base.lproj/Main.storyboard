@@ -11,7 +11,7 @@
         <!--Business Master Controller-->
         <scene sceneID="e74-Vn-XGr">
             <objects>
-                <viewController storyboardIdentifier="businessMasterController" id="zeJ-co-XL0" customClass="BusinessMasterController" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BusinessMasterController" id="zeJ-co-XL0" customClass="BusinessMasterController" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mvd-Yk-JvV"/>
                         <viewControllerLayoutGuide type="bottom" id="X80-fx-ipP"/>

@@ -10,18 +10,28 @@ import Foundation
 
 typealias BusinessBlock = ([Business])->Void
 
-
-class ModelLayer
-{
-    fileprivate var networkLayer = NetworkLayer()
-    fileprivate var translationLayer = TranslationLayer()
+protocol   ModelLayer{
+     func loadData(location: String, resultsLoaded: @escaping  BusinessBlock)
     
+}
+
+class ModelLayerImpl: ModelLayer
+{
+    fileprivate var networkLayer : NetworkLayer
+    fileprivate var translationLayer : TranslationLayer
+    
+    init(networkLayer: NetworkLayer,
+         translationLayer: TranslationLayer)
+    {
+        self.networkLayer = networkLayer
+         self.translationLayer = translationLayer
+    }
     
     func loadData(location: String, resultsLoaded: @escaping  BusinessBlock)
     {
         
         networkLayer.loadFromNetwork(location: location,finished: { data in
-            let businesses = self.translationLayer.createBusinesssFromJsonData(data)
+            let businesses = self.translationLayer.createBusinessFromJsonData(data)
             
             resultsLoaded( businesses)
             

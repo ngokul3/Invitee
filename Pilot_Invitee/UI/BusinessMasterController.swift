@@ -14,15 +14,26 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
    
     
     @IBOutlet weak var tableView: UITableView!
-
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     var locationSearched : String = ""
-    var businessMasterPresenter : BusinessMasterPresenter!
+    fileprivate var presenter : BusinessMasterPresenter!
+    fileprivate var businessDetailMaker : DependencyRegistry.BusinessDetailControllerMaker!
+    fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     
+    func configure(with presenter: BusinessMasterPresenter, businessCellMaker : @escaping DependencyRegistry.BusinessCellMaker,
+                   businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker)
+    {
+        self.presenter = presenter
+        self.businessDetailMaker = businessDetailControllerMaker
+        self.businessCellMaker = businessCellMaker
+    }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
      //    searchController.searchResultsUpdater = self as! UISearchResultsUpdating
     //    self.navigationItem.searchController = searchController
@@ -31,10 +42,9 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         //self.tableView.reloadData()
 //        tableView.tableHeaderView = searchController.searchBar
 
-        businessMasterPresenter = BusinessMasterPresenter()
         BusinessCell.register(with: tableView)
    
-        businessMasterPresenter.loadData( location: locationSearched, finished: {
+        self.presenter.loadData( finished: {
             self.DataReceived()
         })
     }
@@ -48,14 +58,14 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return businessMasterPresenter.data.count
+       return self.presenter.data.count
     }
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let business = businessMasterPresenter.data[indexPath.row]
+        let business = self.presenter.data[indexPath.row]
 
-        let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
-
+       // let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
+        let cell = businessCellMaker(tableView, indexPath, business)
         return cell
 
     }
