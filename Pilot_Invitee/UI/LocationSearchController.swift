@@ -15,6 +15,9 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     @IBOutlet weak var tableView: UITableView!
     fileprivate var presenter : LocationSearchPresenter!
     fileprivate var businessMasterControllerMaker: DependencyRegistry.BusinessMasterControllerMaker!
+    //fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
+    //fileprivate var modelLayer : DependencyRegistry.
+    
     
     var searchController = UISearchController(searchResultsController: nil)
    
@@ -63,8 +66,8 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     func popNextController(location : String, cell : UITableViewCell)
     {
         
-        let businessMasterController = businessMasterControllerMaker(ModelLayerImpl(networkLayer: NetworkLayerImpl(), translationLayer: TranslationLayerImpl()),  location)
-        
+        let businessMasterController = businessMasterControllerMaker(location)
+
         navigationController?.pushViewController(businessMasterController, animated: true)
   
     }

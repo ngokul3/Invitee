@@ -27,7 +27,7 @@ class BusinessMasterPresenterImpl: BusinessMasterPresenter{
     
     var location: String
     
-    init(modelLayer : ModelLayer, location : String)
+    init(modelLayer: ModelLayer,location : String)
     {
         self.modelLayer = modelLayer
         self.location = location

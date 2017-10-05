@@ -18,12 +18,14 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     let searchController = UISearchController(searchResultsController: nil)
     
     var locationSearched : String = ""
+    
     fileprivate var presenter : BusinessMasterPresenter!
     fileprivate var businessDetailMaker : DependencyRegistry.BusinessDetailControllerMaker!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     
-    func configure(with presenter: BusinessMasterPresenter, businessCellMaker : @escaping DependencyRegistry.BusinessCellMaker,
-                   businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker)
+    func configure(with presenter: BusinessMasterPresenter,
+                   businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker,
+                   businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker)
     {
         self.presenter = presenter
         self.businessDetailMaker = businessDetailControllerMaker
@@ -64,7 +66,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let business = self.presenter.data[indexPath.row]
 
-       // let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
+      // let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
         let cell = businessCellMaker(tableView, indexPath, business)
         return cell
 

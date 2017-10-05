@@ -21,13 +21,13 @@ protocol LocationSearchedDelegate: class{
 
 
 protocol  LocationSearchPresenter {
-    weak var locationDelegate:LocationDataSourceDelegate?{get set}
+   weak var locationDelegate:LocationDataSourceDelegate?{get set}
     var viewController :  UIViewController{set get}
-    func loadData()
+     func loadData()
 }
 
 
-class LocationSearchPresenterImpl:NSObject, LocationSearchPresenter {
+class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
     
     private var search:MKLocalSearch? =  nil
     
@@ -38,13 +38,17 @@ class LocationSearchPresenterImpl:NSObject, LocationSearchPresenter {
     
     weak var locationDelegate:LocationDataSourceDelegate?
     //weak var businessDelegate: LocationSearchedDelegate?
+    //fileprivate var modelLayer : ModelLayer
+    fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     
+   
     
     override init() {
+
         super.init()
         searchCompleter.delegate = self
-        //viewController = UIViewController()
-        
+
+
     }
     
     func locationCount() -> Int {
@@ -117,10 +121,15 @@ extension LocationSearchPresenterImpl:UITableViewDataSource{
 extension LocationSearchPresenterImpl:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
         let item = locationAt(index: indexPath)
         let request = MKLocalSearchRequest()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         request.naturalLanguageQuery = item.subtitle
+        
+        
+        
         locationDelegate?.popNextController(location : request.naturalLanguageQuery! ,cell : cell)
        
     }

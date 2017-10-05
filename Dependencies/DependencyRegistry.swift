@@ -8,8 +8,8 @@ protocol DependencyRegistry {
     typealias  BusinessCellMaker = (UITableView, IndexPath, Business) -> BusinessCell
     func makeBusinessCell(for tableView: UITableView, at indexPath: IndexPath, business: Business) -> BusinessCell
     
-    typealias BusinessMasterControllerMaker = (ModelLayer, String) -> BusinessMasterController
-    func makeBusinessMasterViewController(modelLayer : ModelLayer,  location : String) -> BusinessMasterController
+    typealias BusinessMasterControllerMaker = (String) -> BusinessMasterController
+    func makeBusinessMasterViewController(location : String) -> BusinessMasterController
     
     typealias BusinessDetailControllerMaker = (Business, BusinessDelegate)  -> BusinessDetailController
     func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
@@ -52,8 +52,9 @@ class DependencyRegistryImpl: DependencyRegistry
     func registerPresenters() {
         container.register(LocationSearchPresenter.self) { r in LocationSearchPresenterImpl() }
         container.register(BusinessMasterPresenter.self) { (r, modelLayer : ModelLayer,location: String)  in BusinessMasterPresenterImpl(modelLayer: r.resolve(ModelLayer.self)!, location: location) }
+        
         container.register(BusinessCellPresenter.self) { (r, business: Business) in BusinessCellPresenterImpl(business: business) }
-       // container.register(SecretDetailsPresenter.self) { (r, spy: SpyDTO) in SecretDetailsPresenterImpl(with: spy) }
+      
     }
     
     
@@ -66,12 +67,16 @@ class DependencyRegistryImpl: DependencyRegistry
 //        
         
         
-        container.register(BusinessMasterController.self) { (r, businessCellMaker : @escaping BusinessCellMaker, modelLayer : ModelLayer, location:String) in
-            let presenter = r.resolve(BusinessMasterPresenter.self, arguments: modelLayer,location)!
+//        container.register(BusinessMasterController.self) { (r, businessCellMaker : @escaping BusinessCellMaker) in
+//            let presenter = r.resolve(BusinessMasterPresenter.self, arguments: r.resolve(ModelLayer.self)!,location: location)!
+//
+        
+        container.register(BusinessMasterController.self) { (r, location: String) in
+            let presenter = r.resolve(BusinessMasterPresenter.self, arguments: r.resolve(ModelLayer.self)!,location)!
             
             //NOTE: We don't have access to the constructor for this VC so we are using method injection
             let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "BusinessMasterController") as! BusinessMasterController
-            vc.configure(with: presenter, businessCellMaker: businessCellMaker, businessDetailControllerMaker: self.makeBusinessDetailController)
+            vc.configure(with: presenter,  businessDetailControllerMaker: self.makeBusinessDetailController, businessCellMaker: self.makeBusinessCell)
             return vc
         }
     }
@@ -82,8 +87,8 @@ class DependencyRegistryImpl: DependencyRegistry
         return cell
     }
     
-    func makeBusinessMasterViewController(modelLayer: ModelLayer, location: String) -> BusinessMasterController {
-        return container.resolve(BusinessMasterController.self, arguments: modelLayer, location)!
+    func makeBusinessMasterViewController(location: String) -> BusinessMasterController {
+        return container.resolve(BusinessMasterController.self, argument: location)!
     }
     
     
