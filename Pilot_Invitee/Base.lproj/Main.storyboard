@@ -42,14 +42,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="KUG-r5-hoE">
+                            <connections>
+                                <action selector="clickNotification:" destination="zeJ-co-XL0" id="ca2-rE-AI2"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="a7v-Vc-pmN"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Skd-fv-rJ6" id="o46-mp-r9A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPe-J2-Su0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-47.200000000000003" y="-480.80959520239884"/>
+            <point key="canvasLocation" x="292" y="-480.80959520239884"/>
         </scene>
         <!--Location Search Controller-->
         <scene sceneID="cUg-B5-meY">
@@ -100,7 +108,7 @@
                     <navigationItem key="navigationItem" id="ASX-5S-TfV"/>
                     <connections>
                         <outlet property="tableView" destination="TqW-XO-Sqh" id="ljj-JS-4sM"/>
-                        <segue destination="zeJ-co-XL0" kind="show" identifier="locationToBusinessSegue" id="HbH-i0-gGo"/>
+                        <segue destination="yJX-lp-rTi" kind="show" identifier="locationToBusinessSegue" id="HbH-i0-gGo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xos-VT-D7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,6 +132,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shj-mh-LJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2047" y="-950"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LjE-DR-wzr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="yJX-lp-rTi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cXt-fD-YB0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rhz-4d-QUq">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="zeJ-co-XL0" kind="relationship" relationship="rootViewController" id="hwD-PI-aK2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TUx-q8-OFh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698" y="-247"/>
         </scene>
     </scenes>
 </document>
