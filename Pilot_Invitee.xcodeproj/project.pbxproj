@@ -18,6 +18,9 @@
 		900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D11F76C0E400F93496 /* LocationSearchController.swift */; };
 		900A06D41F76C79D00F93496 /* LocationSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */; };
 		901512741F7DCD8E00C388CF /* BusinessMasterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */; };
+		903240E41F8C5B9700B51D17 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903240E31F8C5B9700B51D17 /* NotificationType.swift */; };
+		903240E71F8C64F600B51D17 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903240E61F8C64F600B51D17 /* NotificationCell.swift */; };
+		903240E91F8D9B7900B51D17 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903240E81F8D9B7900B51D17 /* NotificationCell.xib */; };
 		90D0C9B81F78733700B80694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0C9B71F78733700B80694 /* Extensions.swift */; };
 		90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA381F6C066200583DB2 /* AppDelegate.swift */; };
 		90DAFA3E1F6C066200583DB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DAFA3C1F6C066200583DB2 /* Main.storyboard */; };
@@ -64,6 +67,9 @@
 		900A06D11F76C0E400F93496 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchController.swift; path = Pilot_Invitee/UI/LocationSearchController.swift; sourceTree = "<group>"; };
 		900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchPresenter.swift; path = Pilot_Invitee/UI/LocationSearchPresenter.swift; sourceTree = "<group>"; };
 		901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessMasterPresenter.swift; path = Pilot_Invitee/UI/BusinessMasterPresenter.swift; sourceTree = "<group>"; };
+		903240E31F8C5B9700B51D17 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationType.swift; path = Pilot_Invitee/UI/NotificationType.swift; sourceTree = "<group>"; };
+		903240E61F8C64F600B51D17 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationCell.swift; path = Pilot_Invitee/UI/NotificationCell.swift; sourceTree = "<group>"; };
+		903240E81F8D9B7900B51D17 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NotificationCell.xib; path = Pilot_Invitee/UI/NotificationCell.xib; sourceTree = "<group>"; };
 		90D0C9B71F78733700B80694 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		90DAFA351F6C066200583DB2 /* Pilot_Invitee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pilot_Invitee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90DAFA381F6C066200583DB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,8 +155,9 @@
 		90066AE31F89A93A0019A637 /* NotificationController */ = {
 			isa = PBXGroup;
 			children = (
-				90066AE41F89A9600019A637 /* NotificationController.swift */,
 				90066AE61F89A9AE0019A637 /* NotificationPresenter.swift */,
+				90066AE41F89A9600019A637 /* NotificationController.swift */,
+				903240E31F8C5B9700B51D17 /* NotificationType.swift */,
 			);
 			name = NotificationController;
 			sourceTree = "<group>";
@@ -162,6 +169,15 @@
 				900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */,
 			);
 			name = LocationController;
+			sourceTree = "<group>";
+		};
+		903240E51F8C64C100B51D17 /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				903240E61F8C64F600B51D17 /* NotificationCell.swift */,
+				903240E81F8D9B7900B51D17 /* NotificationCell.xib */,
+			);
+			name = NotificationCell;
 			sourceTree = "<group>";
 		};
 		90D0C9B61F78729400B80694 /* Supporting Classes */ = {
@@ -240,6 +256,7 @@
 		90DAFA691F6D8A6300583DB2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				903240E51F8C64C100B51D17 /* NotificationCell */,
 				90066AE31F89A93A0019A637 /* NotificationController */,
 				900A06D01F769EBD00F93496 /* LocationController */,
 				90DAFA741F6D8DB000583DB2 /* BusinessCell */,
@@ -393,6 +410,7 @@
 				90DAFA431F6C066200583DB2 /* LaunchScreen.storyboard in Resources */,
 				90DAFA7C1F6DB37B00583DB2 /* BusinessCell.xib in Resources */,
 				90DAFA401F6C066200583DB2 /* Assets.xcassets in Resources */,
+				903240E91F8D9B7900B51D17 /* NotificationCell.xib in Resources */,
 				90DAFA3E1F6C066200583DB2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,8 +510,10 @@
 				90066ADA1F7F1A860019A637 /* ModelLayer.swift in Sources */,
 				90066AE51F89A9600019A637 /* NotificationController.swift in Sources */,
 				90066ADE1F812AA40019A637 /* DependencyRegistry.swift in Sources */,
+				903240E41F8C5B9700B51D17 /* NotificationType.swift in Sources */,
 				90066AE01F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift in Sources */,
 				90066AE21F815FED0019A637 /* BusinessCellPresenter.swift in Sources */,
+				903240E71F8C64F600B51D17 /* NotificationCell.swift in Sources */,
 				90D0C9B81F78733700B80694 /* Extensions.swift in Sources */,
 				90066AE71F89A9AE0019A637 /* NotificationPresenter.swift in Sources */,
 				90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */,

@@ -16,11 +16,26 @@ protocol DependencyRegistry {
     
     typealias BusinessNotificationControllerMaker = ([Business]) -> NotificationController
     func makeBusinessNotificationController(businesses: [Business]) -> NotificationController
+    
+    typealias NotificationTypeMaker = ([Business], NotificationType)-> Void
+    func makeNotificationType(businesses: [Business] ,notificationType : NotificationType)
+    
+    
+   // func makeNotificationType(for tableView: UITableView, at indexPath: IndexPath, businesses: [Business]) -> NotificationType
   //  func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
 }
 
 class DependencyRegistryImpl: DependencyRegistry
 {
+//    func makeNotificationType(for tableView: UITableView, at indexPath: IndexPath, businesses: [Business]) -> NotificationType{
+//        return NotificationType()
+//    }
+//
+    
+    func makeNotificationType(businesses: [Business] ,notificationType : NotificationType)
+    {
+        notificationType.sendNotification(businesses: businesses)
+    }
     
     
     var container: Container

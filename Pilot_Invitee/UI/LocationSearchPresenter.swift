@@ -39,7 +39,7 @@ class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
     weak var locationDelegate:LocationDataSourceDelegate?
     //weak var businessDelegate: LocationSearchedDelegate?
     //fileprivate var modelLayer : ModelLayer
-    fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
+    //fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     
    
     

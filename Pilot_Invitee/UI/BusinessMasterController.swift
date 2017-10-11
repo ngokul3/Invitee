@@ -38,6 +38,14 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     
     @IBAction func clickNotification(_ sender: Any) {
         
+        
+       // let presenter = r.resolve(NotificationCellPresenter.self, argument: businesses)!
+        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "NotificationController") as! NotificationController
+      //  UIStoryboard.main.pop
+        //vc.configure(with: presenter)
+        //return vc
+        
+        /*
         var business1 = Business(name: "TExt")
         
         business1.name   = "test"
@@ -75,7 +83,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 //
         
         
-        
+        */
     }
     
     
@@ -95,14 +103,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     
     
     
-    func mailComposeControlleer(_ controller: MFMailComposeViewController,
-                                      didFinishWith result: MFMailComposeResult) {
-        // Check the result or perform other tasks.
-        
-        // Dismiss the message compose view controller.
-        controller.dismiss(animated: true, completion: nil)
-        
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

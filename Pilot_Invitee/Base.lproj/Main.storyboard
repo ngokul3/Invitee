@@ -45,7 +45,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="KUG-r5-hoE">
                             <connections>
-                                <action selector="clickNotification:" destination="zeJ-co-XL0" id="ca2-rE-AI2"/>
+                                <segue destination="QVC-9c-6qA" kind="presentation" id="hji-Mt-hwP"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -57,7 +57,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPe-J2-Su0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292" y="-480.80959520239884"/>
+            <point key="canvasLocation" x="25" y="-465"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="bWN-Xb-zTr">
+            <objects>
+                <viewController storyboardIdentifier="NotificationController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="QVC-9c-6qA" customClass="NotificationController" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cnf-j7-UBO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mme-hA-gzT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GgZ-59-8cp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JW-FH-6fw">
+                                <rect key="frame" x="0.0" y="163" width="375" height="183"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKP-Kw-bLq">
+                                        <rect key="frame" x="8" y="21" width="359" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.92928270725388606" green="0.92928270725388606" blue="0.92928270725388606" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Email"/>
+                                        <connections>
+                                            <action selector="btnEmailClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="EqZ-sc-v7r"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbl-Ip-eqV">
+                                        <rect key="frame" x="8" y="68" width="359" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Message"/>
+                                        <connections>
+                                            <action selector="btnMessageClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="GJO-Oe-CWP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uC-tX-SEe">
+                                        <rect key="frame" x="96" y="143" width="184" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="btnCloseClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="46p-OV-XzN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.050753741197183101" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8rC-eU-8Vd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="-459.22038980509751"/>
         </scene>
         <!--Location Search Controller-->
         <scene sceneID="cUg-B5-meY">
