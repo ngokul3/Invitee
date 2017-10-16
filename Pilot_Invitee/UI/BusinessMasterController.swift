@@ -25,22 +25,36 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     fileprivate var businessNotificationMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
+    
+    fileprivate var businessNotificationControllerMaker : DependencyRegistry.BusinessNotificationControllerMaker!
+    
     func configure(with presenter: BusinessMasterPresenter,
                    businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker,
                    businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker,
-                   businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
+                   businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker,
+                   businessNotificationControllerMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
     {
         self.presenter = presenter
         self.businessDetailMaker = businessDetailControllerMaker
         self.businessCellMaker = businessCellMaker
         self.businessNotificationMaker = businessNotificationMaker
+        self.businessNotificationControllerMaker = businessNotificationControllerMaker
     }
     
     @IBAction func clickNotification(_ sender: Any) {
+        var business1 = Business(name: "TExt")
         
+        business1.name   = "test"
+        
+        businesses.append(business1)
+        
+        
+        let businessNotificationController = businessNotificationControllerMaker(businesses)
+        
+        navigationController?.pushViewController(businessNotificationController, animated: true)
         
        // let presenter = r.resolve(NotificationCellPresenter.self, argument: businesses)!
-        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "NotificationController") as! NotificationController
+       // let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "NotificationController") as! NotificationController
       //  UIStoryboard.main.pop
         //vc.configure(with: presenter)
         //return vc
@@ -100,8 +114,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         controller.dismiss(animated: true, completion: nil)
         
     }
-    
-    
+        
     
     
     override func viewDidLoad() {

@@ -20,17 +20,12 @@ protocol DependencyRegistry {
     typealias NotificationTypeMaker = ([Business], NotificationType)-> Void
     func makeNotificationType(businesses: [Business] ,notificationType : NotificationType)
     
-    
-   // func makeNotificationType(for tableView: UITableView, at indexPath: IndexPath, businesses: [Business]) -> NotificationType
+   
   //  func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
 }
 
 class DependencyRegistryImpl: DependencyRegistry
 {
-//    func makeNotificationType(for tableView: UITableView, at indexPath: IndexPath, businesses: [Business]) -> NotificationType{
-//        return NotificationType()
-//    }
-//
     
     func makeNotificationType(businesses: [Business] ,notificationType : NotificationType)
     {
@@ -94,14 +89,15 @@ class DependencyRegistryImpl: DependencyRegistry
             //NOTE: We don't have access to the constructor for this VC so we are using method injection
             let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "BusinessMasterController") as! BusinessMasterController
             vc.configure(with: presenter,  businessDetailControllerMaker: self.makeBusinessDetailController
-                , businessCellMaker: self.makeBusinessCell, businessNotificationMaker : self.makeBusinessNotificationController)
+                , businessCellMaker: self.makeBusinessCell, businessNotificationMaker : self.makeBusinessNotificationController,
+                  businessNotificationControllerMaker : self.makeBusinessNotificationController )
             return vc
         }
         
         container.register(NotificationController.self){(r, businesses: [Business]) in
             let presenter = r.resolve(NotificationPresenter.self, argument: businesses)!
             let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "NotificationController") as! NotificationController
-            vc.configure(with: presenter)
+            vc.configure(with: presenter, notificationTypeMaker : self.makeNotificationType)
             return vc
         }
     }
@@ -114,13 +110,6 @@ class DependencyRegistryImpl: DependencyRegistry
     func makeBusinessMasterViewController(location: String) -> BusinessMasterController {
         return container.resolve(BusinessMasterController.self, argument: location)!
     }
-    
-    
-//    func makeBusinessMasterViewController(with location : String) -> BusinessMasterController {
-//
-//        return container.resolve(BusinessMasterController.self, argument: location)!
-//
-//    }
     
     func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController {
         

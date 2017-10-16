@@ -13,7 +13,7 @@ import MessageUI
 class NotificationController: UIViewController
 {
     fileprivate var notificationTypeMaker : DependencyRegistry.NotificationTypeMaker!
-    
+    fileprivate var presenter : NotificationPresenter!
     
     
    
@@ -23,10 +23,10 @@ class NotificationController: UIViewController
 //    required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
-    func configure(with presenter: NotificationPresenter)
+    func configure(with presenter: NotificationPresenter, notificationTypeMaker : @escaping DependencyRegistry.NotificationTypeMaker)
     {
-        self.notificationTypeMaker = nil
-       // self.presenter = presenter
+        self.notificationTypeMaker = notificationTypeMaker
+        self.presenter = presenter
      //   self.notificationType = notificationType
        
     }
@@ -34,8 +34,10 @@ class NotificationController: UIViewController
 
 extension NotificationController{
     @IBAction func btnEmailClick(_ sender: Any) {
-        let x = [Business]()
-        notificationTypeMaker(x, MailNotification())
+        //let x = [Business]()
+        notificationTypeMaker(self.presenter.businesses, MailNotification())
+        
+        dismiss(animated:true, completion: nil)
     }
     
     @IBAction func btnMessageClick(_ sender: Any) {
