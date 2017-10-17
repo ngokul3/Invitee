@@ -57,7 +57,7 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
        
     }
     
-    
+  
     func refreshData()
     {
         tableView.reloadData()

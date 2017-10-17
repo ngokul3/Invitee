@@ -10,40 +10,65 @@ import Foundation
 import UIKit
 import MessageUI
 
-class NotificationController: UIViewController
+protocol NotificationType{
+    func sendNotification(businesses : [Business])
+}
+
+class NotificationController: UIViewController,MFMailComposeViewControllerDelegate
 {
     fileprivate var notificationTypeMaker : DependencyRegistry.NotificationTypeMaker!
     fileprivate var presenter : NotificationPresenter!
     
-    
-   
-    
-    //fileprivate var notificationType : NotificationType
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     func configure(with presenter: NotificationPresenter, notificationTypeMaker : @escaping DependencyRegistry.NotificationTypeMaker)
     {
         self.notificationTypeMaker = notificationTypeMaker
         self.presenter = presenter
-     //   self.notificationType = notificationType
        
     }
 }
 
 extension NotificationController{
     @IBAction func btnEmailClick(_ sender: Any) {
-        //let x = [Business]()
-        notificationTypeMaker(self.presenter.businesses, MailNotification())
+        self.sendMailNotification(businesses: self.presenter.businesses)
+       // notificationTypeMaker(self.presenter.businesses, MailNotification())
         
-        dismiss(animated:true, completion: nil)
+        //dismiss(animated:true, completion: nil)
     }
     
     @IBAction func btnMessageClick(_ sender: Any) {
     }
     @IBAction func btnCloseClick(_ sender: Any) {
         
-        dismiss(animated:true, completion: nil)
+        self.dismiss(animated:true, completion: nil)
     }
+    
+    
+    
+}
+extension NotificationController{
+    
+    func sendMailNotification(businesses : [Business]) {
+        if !MFMailComposeViewController.canSendMail() {
+            print("SMS services are not available")
+            return
+        }
+        let mailComposer = MFMailComposeViewController()
+        
+        mailComposer.setToRecipients(["ngokul3@gmail.com"])
+        mailComposer.setMessageBody("Hello from California!", isHTML: false)
+        
+       // let  topView = UIApplication.shared.keyWindow?.rootViewController
+        
+        //   print(topView?.contr)
+        mailComposer.mailComposeDelegate = self
+        
+        self.present(mailComposer, animated: true, completion: nil)
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith: MFMailComposeResult, error: Error?)
+    {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
 }

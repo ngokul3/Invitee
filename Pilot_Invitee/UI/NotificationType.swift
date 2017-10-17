@@ -11,14 +11,14 @@ import MessageUI
 import UIKit
 
 
-protocol NotificationType{
+protocol NotificationType1{
    // var businesses : [Business]?{get set}
     
     func sendNotification(businesses : [Business])
 }
 
 
-class MailNotification:  UIViewController, NotificationType, MFMailComposeViewControllerDelegate
+class MailNotification:  UIViewController, NotificationType1, MFMailComposeViewControllerDelegate
 {
    // var businesses: [Business]?
     
@@ -33,16 +33,17 @@ class MailNotification:  UIViewController, NotificationType, MFMailComposeViewCo
             print("SMS services are not available")
             return
         }
-        let mailComposer = MFMailComposeViewController()
-        mailComposer.mailComposeDelegate = self
-        
-        // Configure the fields of the interface.
+         let mailComposer = MFMailComposeViewController()
+         // Configure the fields of the interface.
         mailComposer.setToRecipients(["ngokul3@gmail.com"])
         mailComposer.setMessageBody("Hello from California!", isHTML: false)
         
+        let  topView = UIApplication.shared.keyWindow?.rootViewController
         
-        // Present the view controller modally.
-        self.present(mailComposer, animated: true, completion: nil)
+    //   print(topView?.contr)
+        mailComposer.mailComposeDelegate = self
+        
+        topView!.present(mailComposer, animated: true, completion: nil)
         
     }
     
@@ -53,7 +54,7 @@ class MailNotification:  UIViewController, NotificationType, MFMailComposeViewCo
     
 }
 
-class MessageNotification:  UIViewController, NotificationType, MFMessageComposeViewControllerDelegate
+class MessageNotification:  UIViewController, NotificationType1, MFMessageComposeViewControllerDelegate
 {
      var businesses: [Business]?
     

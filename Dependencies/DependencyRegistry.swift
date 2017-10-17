@@ -71,17 +71,7 @@ class DependencyRegistryImpl: DependencyRegistry
     
     
     func registerViewControllers() {
-        
-//         container.register(BusinessDetailController.self) { (r, business: Business, businessDelegate: BusinessDelegate) in
-//            let presenter = r.resolve(SecretDetailsPresenter.self, argument: spy)!
-//            return SecretDetailsViewController(with: presenter, and: delegate)
-//        }
-//        
-        
-        
-//        container.register(BusinessMasterController.self) { (r, businessCellMaker : @escaping BusinessCellMaker) in
-//            let presenter = r.resolve(BusinessMasterPresenter.self, arguments: r.resolve(ModelLayer.self)!,location: location)!
-//
+ 
         
         container.register(BusinessMasterController.self) { (r, location: String) in
             let presenter = r.resolve(BusinessMasterPresenter.self, arguments: r.resolve(ModelLayer.self)!,location)!
