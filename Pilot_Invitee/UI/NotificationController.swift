@@ -19,20 +19,23 @@ class NotificationController: UIViewController,MFMailComposeViewControllerDelega
     fileprivate var notificationTypeMaker : DependencyRegistry.NotificationTypeMaker!
     fileprivate var presenter : NotificationPresenter!
     
+    var businesses = [Business]()
+    
     func configure(with presenter: NotificationPresenter, notificationTypeMaker : @escaping DependencyRegistry.NotificationTypeMaker)
     {
         self.notificationTypeMaker = notificationTypeMaker
         self.presenter = presenter
+
        
     }
 }
 
 extension NotificationController{
     @IBAction func btnEmailClick(_ sender: Any) {
-        self.sendMailNotification(businesses: self.presenter.businesses)
-       // notificationTypeMaker(self.presenter.businesses, MailNotification())
+      //  self.sendMailNotification(businesses: self.presenter.businesses)
         
-        //dismiss(animated:true, completion: nil)
+        self.sendMailNotification(businesses: businesses)
+      
     }
     
     @IBAction func btnMessageClick(_ sender: Any) {
@@ -55,11 +58,20 @@ extension NotificationController{
         let mailComposer = MFMailComposeViewController()
         
         mailComposer.setToRecipients(["ngokul3@gmail.com"])
-        mailComposer.setMessageBody("Hello from California!", isHTML: false)
         
-       // let  topView = UIApplication.shared.keyWindow?.rootViewController
+        var businessInfo = String()
         
-        //   print(topView?.contr)
+      //  businessInfo = "<html></html>"
+        
+        for business in businesses
+        {
+            businessInfo = businessInfo + "<p> " + business.name + "</p> <br>"
+            //businessInfo.
+          
+        }
+       
+        mailComposer.setMessageBody(businessInfo, isHTML: true)
+       
         mailComposer.mailComposeDelegate = self
         
         self.present(mailComposer, animated: true, completion: nil)

@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import MessageUI
 
-class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate  {
+class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate  {
    
     
    
@@ -40,7 +40,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         self.businessNotificationMaker = businessNotificationMaker
         self.businessNotificationControllerMaker = businessNotificationControllerMaker
     }
-    
+  /*
     @IBAction func clickNotification(_ sender: Any) {
         var business1 = Business(name: "TExt")
         
@@ -99,23 +99,25 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         
         */
     }
+    */
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool{
+//        return false
+//    }
     
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith: MFMailComposeResult, error: Error?)
-    {
-         controller.dismiss(animated: true, completion: nil)
-    }
-
-    func messageComposeViewController(_ controller: MFMessageComposeViewController,
-                                      didFinishWith result: MessageComposeResult) {
-        // Check the result or perform other tasks.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+//        var business1 = Business(name: "Text", selected : false)
+//
+//        business1.name   = "test"
+//
+//        businesses.append(business1)
         
-        // Dismiss the message compose view controller.
-        controller.dismiss(animated: true, completion: nil)
+    
+        let viewController = segue.destination as! NotificationController
+        viewController.businesses  = businesses.filter({$0.selected == true})
+        
         
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,10 +150,22 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
        return self.presenter.data.count
     }
   
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark)
+        {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+            businesses[indexPath.row].selected = false
+        }
+        else
+        {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+            businesses[indexPath.row].selected = true
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let business = self.presenter.data[indexPath.row]
 
-      // let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: business)
+        businesses.append(business)
         let cell = businessCellMaker(tableView, indexPath, business)
         return cell
 
