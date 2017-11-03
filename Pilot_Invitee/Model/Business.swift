@@ -13,6 +13,8 @@ struct Business
 {
     var name:String
     var rating: Int
+    var image_url : String
+    var businessURL : String
     var selected : Bool
    // var rating : String
 }
@@ -27,6 +29,8 @@ extension Business: Deserializable {
          name = try object.value(for: "name")
          selected = false
          rating = try object.value(for: "rating")
+         image_url = try object.value(for: "image_url")
+         businessURL = ""//try object.value(for: "businessURL")
            }
     
    

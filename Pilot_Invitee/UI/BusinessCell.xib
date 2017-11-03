@@ -18,27 +18,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOC-NK-xCV">
-                        <rect key="frame" x="87" y="8" width="62" height="21"/>
+                        <rect key="frame" x="98" y="8" width="184" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPJ-DW-uzt">
-                        <rect key="frame" x="8" y="5" width="46" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Info"/>
-                        <connections>
-                            <action selector="btnInfoClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XJF-B0-A9e"/>
-                        </connections>
-                    </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EI-Pf-hIe">
-                        <rect key="frame" x="14" y="31" width="240" height="28"/>
+                        <rect key="frame" x="87" y="32" width="123" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJG-kB-AQm">
+                        <rect key="frame" x="6" y="7" width="68" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imgBusiness" destination="TJG-kB-AQm" id="9Ym-oN-3Iw"/>
                 <outlet property="imgRating" destination="5EI-Pf-hIe" id="Gwj-uI-pJR"/>
                 <outlet property="lblName" destination="vOC-NK-xCV" id="gCh-Zi-14K"/>
             </connections>

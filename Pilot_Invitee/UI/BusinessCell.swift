@@ -8,13 +8,16 @@
 
 import UIKit
 
+typealias UpdateBusinessImageBlock = (UIImage)-> Void
+
+
 class BusinessCell: UITableViewCell {
 
     fileprivate var presenter : BusinessCellPresenter!
     
     @IBOutlet weak var imgRating: UIImageView!
     @IBOutlet weak var lblName: UILabel!
-    
+    @IBOutlet weak var imgBusiness: UIImageView!
     
     var business: Business!
     
@@ -43,13 +46,51 @@ extension BusinessCell {
     
     func setRating(rating : Int)
     {
-        imgRating.image = image(forRating: rating)
+        imgRating.image = ratingImage(forRating: rating)
     }
     
-    func image(forRating rating: Int) -> UIImage? {
+    func ratingImage(forRating rating: Int) -> UIImage? {
         let imageName = "\(rating)Stars"
         return UIImage(named: imageName)
     }
+  
+    func SetbusinessImage(forBusinessImage businessImageURL : String) {
+        let businessImageURL = URL(string: businessImageURL)!
+        //var businessImage : UIImage?
+        let session = URLSession(configuration: .default)
+        
+        let downloadPicTask = session.dataTask(with: businessImageURL) { (data, response, error) in
+            // The download has finished.
+            if let e = error {
+                print("Error downloading cat picture: \(e)")
+            } else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        // Finally convert that Data into an image and do what you wish with it.
+                        DispatchQueue.main.async(execute: {
+                            
+                            self.imgBusiness.image = UIImage(data: imageData)
+                        })
+                        
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                }else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+         downloadPicTask.resume()
+        
+     //    imgBusiness.image = businessImage
+        
+        
+    }
+    
+    
+    
+    
 }
     
 extension BusinessCell {
@@ -57,7 +98,10 @@ extension BusinessCell {
        
         self.setName(name: presenter.name)
         self.setRating(rating: presenter.rating)
+        self.SetbusinessImage(forBusinessImage: presenter.businessImageURL)
+        
         }
+    
     }
     
 
