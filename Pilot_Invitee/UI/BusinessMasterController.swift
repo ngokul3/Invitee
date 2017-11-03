@@ -40,82 +40,10 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         self.businessNotificationMaker = businessNotificationMaker
         self.businessNotificationControllerMaker = businessNotificationControllerMaker
     }
-  /*
-    @IBAction func clickNotification(_ sender: Any) {
-        var business1 = Business(name: "TExt")
-        
-        business1.name   = "test"
-        
-        businesses.append(business1)
-        
-        
-        let businessNotificationController = businessNotificationControllerMaker(businesses)
-        
-        navigationController?.pushViewController(businessNotificationController, animated: true)
-        
-       // let presenter = r.resolve(NotificationCellPresenter.self, argument: businesses)!
-       // let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "NotificationController") as! NotificationController
-      //  UIStoryboard.main.pop
-        //vc.configure(with: presenter)
-        //return vc
-        
-        /*
-        var business1 = Business(name: "TExt")
-        
-        business1.name   = "test"
-        
-        businesses.append(business1)
-       // let notificationController = businessNotificationMaker(businesses)
-        //navigationController?.pushViewController(notificationController, animated: true)
-        
-        if !MFMessageComposeViewController.canSendText() {
-            print("SMS services are not available")
-            return
-        }
-        let mailComposer = MFMailComposeViewController()
-        mailComposer.mailComposeDelegate = self
-        
-        // Configure the fields of the interface.
-        mailComposer.setToRecipients(["ngokul3@gmail.com"])
-        mailComposer.setMessageBody("Hello from California!", isHTML: false)
-
-        
-        // Present the view controller modally.
-        self.present(mailComposer, animated: true, completion: nil)
-        
-        
-        
-//        let msgComposer = MFMessageComposeViewController()
-//        msgComposer.messageComposeDelegate = self
-//
-//        // Configure the fields of the interface.
-//        msgComposer.recipients = ["6469428120"]
-//        msgComposer.body = "Hello from California!"
-//
-//        // Present the view controller modally.
-//        self.present(msgComposer, animated: true, completion: nil)
-//
-        
-        
-        */
-    }
-    */
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool{
-//        return false
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-//        var business1 = Business(name: "Text", selected : false)
-//
-//        business1.name   = "test"
-//
-//        businesses.append(business1)
-        
-    
         let viewController = segue.destination as! NotificationController
         viewController.businesses  = businesses.filter({$0.selected == true})
-        
         
     }
     
@@ -151,6 +79,19 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark)
+        {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+            businesses[indexPath.row].selected = false
+        }
+        else
+        {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+            businesses[indexPath.row].selected = true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark)
         {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none

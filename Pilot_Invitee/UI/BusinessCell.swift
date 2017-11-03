@@ -12,7 +12,10 @@ class BusinessCell: UITableViewCell {
 
     fileprivate var presenter : BusinessCellPresenter!
     
+    @IBOutlet weak var imgRating: UIImageView!
     @IBOutlet weak var lblName: UILabel!
+    
+    
     var business: Business!
     
     override func awakeFromNib() {
@@ -20,6 +23,10 @@ class BusinessCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBAction func btnInfoClick(_ sender: Any) {
+        
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -29,19 +36,27 @@ class BusinessCell: UITableViewCell {
 }
 
 extension BusinessCell {
-    func set(name: String) {
+    func setName(name: String) {
         lblName.text = name
-       // nameValueLabel.accessibilityValue = name
+       
     }
     
-   
+    func setRating(rating : Int)
+    {
+        imgRating.image = image(forRating: rating)
+    }
+    
+    func image(forRating rating: Int) -> UIImage? {
+        let imageName = "\(rating)Stars"
+        return UIImage(named: imageName)
+    }
 }
     
 extension BusinessCell {
     func configure(with presenter: BusinessCellPresenter) {
        
-        self.set(name: presenter.name)
-        
+        self.setName(name: presenter.name)
+        self.setRating(rating: presenter.rating)
         }
     }
     

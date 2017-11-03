@@ -12,6 +12,7 @@ import Outlaw
 struct Business
 {
     var name:String
+    var rating: Int
     var selected : Bool
    // var rating : String
 }
@@ -25,7 +26,7 @@ extension Business: Deserializable {
         
          name = try object.value(for: "name")
          selected = false
-       // rating = try object.value(for: "rating")
+         rating = try object.value(for: "rating")
            }
     
    

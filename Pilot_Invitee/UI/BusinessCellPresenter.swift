@@ -9,6 +9,7 @@
 import Foundation
 protocol BusinessCellPresenter{
     var name: String {get}
+    var rating : Int {get}
 }
 
 
@@ -25,6 +26,8 @@ class BusinessCellPresenterImpl : BusinessCellPresenter{
         return business.name
     }
     
-
+    var rating : Int{
+        return business.rating
+    }
     
 }

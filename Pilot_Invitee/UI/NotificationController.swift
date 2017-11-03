@@ -14,8 +14,10 @@ protocol NotificationType{
     func sendNotification(businesses : [Business])
 }
 
-class NotificationController: UIViewController,MFMailComposeViewControllerDelegate
+class NotificationController: UIViewController,MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate
 {
+    
+    
     fileprivate var notificationTypeMaker : DependencyRegistry.NotificationTypeMaker!
     fileprivate var presenter : NotificationPresenter!
     
@@ -34,11 +36,13 @@ extension NotificationController{
     @IBAction func btnEmailClick(_ sender: Any) {
       //  self.sendMailNotification(businesses: self.presenter.businesses)
         
-        self.sendMailNotification(businesses: businesses)
+        self.sendMailNotification(businessesForMail: businesses)
       
     }
     
     @IBAction func btnMessageClick(_ sender: Any) {
+        
+        self.sendMSGNotification(businessesForMSG : businesses)
     }
     @IBAction func btnCloseClick(_ sender: Any) {
         
@@ -49,25 +53,44 @@ extension NotificationController{
     
 }
 extension NotificationController{
-    
-    func sendMailNotification(businesses : [Business]) {
-        if !MFMailComposeViewController.canSendMail() {
+    func sendMSGNotification(businessesForMSG : [Business]){
+        
+        if !MFMessageComposeViewController.canSendText(){
             print("SMS services are not available")
+            return
+        }
+        
+        let msgComposer = MFMessageComposeViewController()
+        msgComposer.messageComposeDelegate = self
+        
+         
+        var businessInfo  = String()
+        
+        for business in businesses
+        {
+            businessInfo = businessInfo + "<br>" + business.name
+        }
+        
+        msgComposer.body = businessInfo
+        
+        self.present(msgComposer, animated: true, completion: nil)
+        
+        
+    
+    }
+    func sendMailNotification(businessesForMail : [Business]) {
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
             return
         }
         let mailComposer = MFMailComposeViewController()
         
-        mailComposer.setToRecipients(["ngokul3@gmail.com"])
-        
         var businessInfo = String()
-        
-      //  businessInfo = "<html></html>"
-        
+         
         for business in businesses
         {
             businessInfo = businessInfo + "<p> " + business.name + "</p> <br>"
-            //businessInfo.
-          
+            
         }
        
         mailComposer.setMessageBody(businessInfo, isHTML: true)
@@ -78,9 +101,12 @@ extension NotificationController{
         
     }
     
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith: MFMailComposeResult, error: Error?)
     {
-        controller.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
