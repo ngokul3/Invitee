@@ -7,41 +7,47 @@
 //
 
 import UIKit
+import SafariServices
 
 typealias UpdateBusinessImageBlock = (UIImage)-> Void
 
 
+
 class BusinessCell: UITableViewCell {
 
-    fileprivate var presenter : BusinessCellPresenter!
-    
+   // fileprivate var presenter : BusinessCellPresenter!
+    var delegate : BusinessViewDelegate?
+    var businessURL = String()
     @IBOutlet weak var imgRating: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgBusiness: UIImageView!
     
-    var business: Business!
+ //   var business: Business!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    @IBAction func btnInfoClick(_ sender: Any) {
-        
-        
-    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
+    @IBAction func businessInfoClick(_ sender: Any) {
+        
+        delegate?.businessInfoClicked(businessInfoURL: businessURL)
+    }
 }
 
 extension BusinessCell {
     func setName(name: String) {
         lblName.text = name
-       
+    }
+    
+    func setBusinessURL(businessURL : String){
+        self.businessURL = businessURL
     }
     
     func setRating(rating : Int)
@@ -56,8 +62,7 @@ extension BusinessCell {
   
     func SetbusinessImage(forBusinessImage businessImageURL : String) {
         let businessImageURL = URL(string: businessImageURL)!
-        //var businessImage : UIImage?
-        let session = URLSession(configuration: .default)
+         let session = URLSession(configuration: .default)
         
         let downloadPicTask = session.dataTask(with: businessImageURL) { (data, response, error) in
             // The download has finished.
@@ -83,12 +88,7 @@ extension BusinessCell {
         }
          downloadPicTask.resume()
         
-     //    imgBusiness.image = businessImage
-        
-        
     }
-    
-    
     
     
 }
@@ -99,7 +99,7 @@ extension BusinessCell {
         self.setName(name: presenter.name)
         self.setRating(rating: presenter.rating)
         self.SetbusinessImage(forBusinessImage: presenter.businessImageURL)
-        
+        self.setBusinessURL(businessURL: presenter.businessURL)
         }
     
     }
@@ -126,9 +126,12 @@ extension BusinessCell {
         return bundle.loadNibNamed(BusinessCell.cellId, owner: owner, options: nil)?.first as! BusinessCell
     }
     
-    public static func dequeue(from tableView: UITableView, for indexPath: IndexPath, with business: BusinessCellPresenter) -> BusinessCell {
+    public static func dequeue(from tableView: UITableView, for indexPath: IndexPath, with business: BusinessCellPresenter, businessViewDelegate : BusinessMasterController) -> BusinessCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BusinessCell.cellId, for: indexPath) as! BusinessCell
+        cell.delegate = businessViewDelegate
         cell.configure(with: business)
         return cell
     }
+    
+   
 }

@@ -33,7 +33,7 @@ class BusinessCellPresenterImpl : BusinessCellPresenter{
     }
     
     var businessURL: String{
-        return business.businessURL
+        return business.url
     }
     
     var businessImageURL: String{

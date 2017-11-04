@@ -5,8 +5,8 @@ import SwinjectStoryboard
 protocol DependencyRegistry {
     var container: Container { get }
     
-    typealias  BusinessCellMaker = (UITableView, IndexPath, Business) -> BusinessCell
-    func makeBusinessCell(for tableView: UITableView, at indexPath: IndexPath, business: Business) -> BusinessCell
+    typealias  BusinessCellMaker = (UITableView, IndexPath, Business, BusinessMasterController) -> BusinessCell
+    func makeBusinessCell(for tableView: UITableView, at indexPath: IndexPath, business: Business, businessViewDelegate : BusinessMasterController) -> BusinessCell
     
     typealias BusinessMasterControllerMaker = (String) -> BusinessMasterController
     func makeBusinessMasterViewController(location : String) -> BusinessMasterController
@@ -91,9 +91,9 @@ class DependencyRegistryImpl: DependencyRegistry
             return vc
         }
     }
-    func makeBusinessCell(for tableView: UITableView, at indexPath: IndexPath, business: Business) -> BusinessCell {
+    func makeBusinessCell(for tableView: UITableView, at indexPath: IndexPath, business: Business, businessViewDelegate : BusinessMasterController) -> BusinessCell {
         let presenter = container.resolve(BusinessCellPresenter.self, argument: business)!
-        let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: presenter)
+        let cell = BusinessCell.dequeue(from: tableView, for: indexPath, with: presenter, businessViewDelegate : businessViewDelegate)
         return cell
     }
     
@@ -104,7 +104,7 @@ class DependencyRegistryImpl: DependencyRegistry
     func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController {
         
         return container.resolve(BusinessDetailController.self, arguments: business, businessDelegate)!
-      //  return container.resolve(BusinessDetailController.self, argument: business, delegate)!
+      
     }
     
     

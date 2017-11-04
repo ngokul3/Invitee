@@ -9,8 +9,13 @@
 import UIKit
 import Foundation
 import MessageUI
+import SafariServices
 
-class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate  {
+
+protocol BusinessViewDelegate {
+    func businessInfoClicked(businessInfoURL : String)
+}
+class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, SFSafariViewControllerDelegate , BusinessViewDelegate {
    
     
    
@@ -41,6 +46,22 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         self.businessNotificationControllerMaker = businessNotificationControllerMaker
     }
     
+    func businessInfoClicked(businessInfoURL : String)
+    {
+        let urlString = businessInfoURL
+        
+        if let url = URL(string: urlString) {
+            let vc = SFSafariViewController(url: url)
+            vc.delegate = self
+            
+            present(vc, animated: true)
+        }
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! NotificationController
         viewController.businesses  = businesses.filter({$0.selected == true})
@@ -60,7 +81,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 //        tableView.tableHeaderView = searchController.searchBar
 
         BusinessCell.register(with: tableView)
-   
+        
         self.presenter.loadData( finished: {
             self.DataReceived()
         })
@@ -107,11 +128,12 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         let business = self.presenter.data[indexPath.row]
 
         businesses.append(business)
-        let cell = businessCellMaker(tableView, indexPath, business)
+        let cell = businessCellMaker(tableView, indexPath, business, self)
         return cell
 
     }
 }
+
 
 extension BusinessMasterController{
     static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController
