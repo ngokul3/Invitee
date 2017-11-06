@@ -11,9 +11,9 @@ protocol DependencyRegistry {
     typealias BusinessMasterControllerMaker = (String) -> BusinessMasterController
     func makeBusinessMasterViewController(location : String) -> BusinessMasterController
     
-    typealias BusinessDetailControllerMaker = (Business, BusinessDelegate)  -> BusinessDetailController
-    func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
-    
+//    typealias BusinessDetailControllerMaker = (Business, BusinessDelegate)  -> BusinessDetailController
+//    func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
+//
     typealias BusinessNotificationControllerMaker = ([Business]) -> NotificationController
     func makeBusinessNotificationController(businesses: [Business]) -> NotificationController
     
@@ -78,8 +78,7 @@ class DependencyRegistryImpl: DependencyRegistry
             
             //NOTE: We don't have access to the constructor for this VC so we are using method injection
             let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "BusinessMasterController") as! BusinessMasterController
-            vc.configure(with: presenter,  businessDetailControllerMaker: self.makeBusinessDetailController
-                , businessCellMaker: self.makeBusinessCell, businessNotificationMaker : self.makeBusinessNotificationController,
+            vc.configure(with: presenter,  businessCellMaker: self.makeBusinessCell, businessNotificationMaker : self.makeBusinessNotificationController,
                   businessNotificationControllerMaker : self.makeBusinessNotificationController )
             return vc
         }
@@ -101,12 +100,12 @@ class DependencyRegistryImpl: DependencyRegistry
         return container.resolve(BusinessMasterController.self, argument: location)!
     }
     
-    func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController {
-        
-        return container.resolve(BusinessDetailController.self, arguments: business, businessDelegate)!
-      
-    }
-    
+//    func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController {
+//        
+//        return container.resolve(BusinessDetailController.self, arguments: business, businessDelegate)!
+//      
+//    }
+//    
     
     func makeBusinessNotificationController(businesses: [Business]) -> NotificationController{
         return container.resolve(NotificationController.self, argument: businesses)!

@@ -69,8 +69,8 @@ extension BusinessCell {
             if let e = error {
                 print("Error downloading cat picture: \(e)")
             } else {
-                if let res = response as? HTTPURLResponse {
-                    print("Downloaded cat picture with response code \(res.statusCode)")
+                if let _ = response as? HTTPURLResponse {
+                   
                     if let imageData = data {
                         // Finally convert that Data into an image and do what you wish with it.
                         DispatchQueue.main.async(execute: {

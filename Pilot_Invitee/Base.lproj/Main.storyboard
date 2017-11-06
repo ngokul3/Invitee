@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cQA-63-cet">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cQA-63-cet">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,7 +48,7 @@
                         <barButtonItem title="Notify" id="KUG-r5-hoE">
                             <connections>
                                 <action selector="clickNotification:" destination="zeJ-co-XL0" id="5Zx-T9-Ygp"/>
-                                <segue destination="QVC-9c-6qA" kind="presentation" id="4MI-BW-z2I"/>
+                                <segue destination="jEc-PZ-fDF" kind="presentation" id="Afo-z6-cnh"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -73,46 +74,108 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JW-FH-6fw">
-                                <rect key="frame" x="0.0" y="163" width="375" height="183"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JW-FH-6fw">
+                                <rect key="frame" x="16" y="91" width="343" height="485"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKP-Kw-bLq">
-                                        <rect key="frame" x="8" y="21" width="359" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.92928270725388606" green="0.92928270725388606" blue="0.92928270725388606" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Email"/>
-                                        <connections>
-                                            <action selector="btnEmailClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="EqZ-sc-v7r"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbl-Ip-eqV">
-                                        <rect key="frame" x="8" y="68" width="359" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbl-Ip-eqV">
+                                        <rect key="frame" x="145" y="358" width="62" height="30"/>
                                         <state key="normal" title="Message"/>
                                         <connections>
                                             <action selector="btnMessageClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="GJO-Oe-CWP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uC-tX-SEe">
-                                        <rect key="frame" x="96" y="143" width="184" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uC-tX-SEe">
+                                        <rect key="frame" x="84" y="399" width="184" height="30"/>
                                         <state key="normal" title="Close"/>
                                         <connections>
                                             <action selector="btnCloseClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="46p-OV-XzN"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Invite" translatesAutoresizingMaskIntoConstraints="NO" id="Wb6-Xe-vpo">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="264"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKP-Kw-bLq">
+                                        <rect key="frame" x="0.0" y="300" width="343" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer. masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnEmailClick:" destination="QVC-9c-6qA" eventType="touchUpInside" id="EqZ-sc-v7r"/>
+                                        </connections>
+                                    </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-3z-gGf">
+                                        <rect key="frame" x="0.0" y="338" width="343" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-tQ-GPG">
+                                        <rect key="frame" x="-2" y="386" width="343" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5uC-tX-SEe" firstAttribute="top" secondItem="Mbl-Ip-eqV" secondAttribute="bottom" constant="11" id="NyN-lg-JCB"/>
+                                    <constraint firstItem="5uC-tX-SEe" firstAttribute="leading" secondItem="7JW-FH-6fw" secondAttribute="leading" constant="96" id="TD8-Kr-0Aj"/>
+                                    <constraint firstItem="5uC-tX-SEe" firstAttribute="centerX" secondItem="Mbl-Ip-eqV" secondAttribute="centerX" id="cg2-uv-uZe"/>
+                                    <constraint firstAttribute="bottom" secondItem="5uC-tX-SEe" secondAttribute="bottom" constant="56" id="eWm-xO-Xve"/>
+                                    <constraint firstAttribute="trailing" secondItem="5uC-tX-SEe" secondAttribute="trailing" constant="63" id="iZO-KI-alR"/>
+                                </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.12145136443661972" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="0.19231404049295775" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7JW-FH-6fw" firstAttribute="trailing" secondItem="GgZ-59-8cp" secondAttribute="trailingMargin" id="4qb-aq-KxM"/>
+                            <constraint firstItem="7JW-FH-6fw" firstAttribute="leading" secondItem="GgZ-59-8cp" secondAttribute="leadingMargin" id="iry-az-hhR"/>
+                            <constraint firstItem="Mme-hA-gzT" firstAttribute="top" secondItem="7JW-FH-6fw" secondAttribute="bottom" constant="91" id="u14-up-zCg"/>
+                            <constraint firstItem="7JW-FH-6fw" firstAttribute="top" secondItem="Cnf-j7-UBO" secondAttribute="bottom" constant="71" id="x9l-dr-T95"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3uq-vL-pVq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rC-eU-8Vd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="-466"/>
+            <point key="canvasLocation" x="853.60000000000002" y="-466.41679160419795"/>
+        </scene>
+        <!--Testing Pop Up View Controller-->
+        <scene sceneID="zfZ-eC-tvn">
+            <objects>
+                <viewController id="jEc-PZ-fDF" customClass="TestingPopUpViewController" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2pd-zq-WRD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Azd-CG-16Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KaH-5h-bUL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bq3-Y9-gap">
+                                <rect key="frame" x="164" y="350" width="87" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Standard"/>
+                                <connections>
+                                    <action selector="showStandardDialogTapped:" destination="jEc-PZ-fDF" eventType="touchUpInside" id="BNn-qA-p66"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzh-lB-aa6">
+                                <rect key="frame" x="171" y="318" width="87" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ImageDIalog"/>
+                                <connections>
+                                    <action selector="showImageDialogTapped:" destination="jEc-PZ-fDF" eventType="touchUpInside" id="iWB-HP-UDN"/>
+                                    <action selector="showStandardDialogTapped:" destination="jEc-PZ-fDF" eventType="touchUpInside" id="Nkv-2e-r3z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lk9-Ie-oxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.79999999999995" y="214.54272863568218"/>
         </scene>
         <!--Location Search Controller-->
         <scene sceneID="cUg-B5-meY">
@@ -211,4 +274,7 @@
             <point key="canvasLocation" x="-698" y="-247"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Invite" width="300" height="300"/>
+    </resources>
 </document>

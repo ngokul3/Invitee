@@ -26,7 +26,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     var locationSearched : String = ""
     private var businesses = [Business]()
     fileprivate var presenter : BusinessMasterPresenter!
-    fileprivate var businessDetailMaker : DependencyRegistry.BusinessDetailControllerMaker!
+  //  fileprivate var businessDetailMaker : DependencyRegistry.BusinessDetailControllerMaker!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     fileprivate var businessNotificationMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
@@ -34,13 +34,13 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     fileprivate var businessNotificationControllerMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
     func configure(with presenter: BusinessMasterPresenter,
-                   businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker,
+                //   businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker,
                    businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker,
                    businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker,
                    businessNotificationControllerMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
     {
         self.presenter = presenter
-        self.businessDetailMaker = businessDetailControllerMaker
+     //   self.businessDetailMaker = businessDetailControllerMaker
         self.businessCellMaker = businessCellMaker
         self.businessNotificationMaker = businessNotificationMaker
         self.businessNotificationControllerMaker = businessNotificationControllerMaker
@@ -63,8 +63,8 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination as! NotificationController
-        viewController.businesses  = businesses.filter({$0.selected == true})
+    //    let viewController = segue.destination as! NotificationController
+//        viewController.businesses  = businesses.filter({$0.selected == true})
         
     }
     

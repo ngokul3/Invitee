@@ -21,6 +21,7 @@
 		903240E41F8C5B9700B51D17 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903240E31F8C5B9700B51D17 /* NotificationType.swift */; };
 		903240E71F8C64F600B51D17 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903240E61F8C64F600B51D17 /* NotificationCell.swift */; };
 		903240E91F8D9B7900B51D17 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903240E81F8D9B7900B51D17 /* NotificationCell.xib */; };
+		906D73B91FAF484E00DF113C /* TestingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906D73B81FAF484E00DF113C /* TestingPopUpViewController.swift */; };
 		90D0C9B81F78733700B80694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0C9B71F78733700B80694 /* Extensions.swift */; };
 		90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA381F6C066200583DB2 /* AppDelegate.swift */; };
 		90DAFA3E1F6C066200583DB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DAFA3C1F6C066200583DB2 /* Main.storyboard */; };
@@ -30,7 +31,6 @@
 		90DAFA591F6C066200583DB2 /* Pilot_InviteeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA581F6C066200583DB2 /* Pilot_InviteeUITests.swift */; };
 		90DAFA681F6C2BEC00583DB2 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA671F6C2BEC00583DB2 /* NetworkLayer.swift */; };
 		90DAFA6B1F6D8B1800583DB2 /* BusinessMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA6A1F6D8B1800583DB2 /* BusinessMasterController.swift */; };
-		90DAFA6E1F6D8BCB00583DB2 /* BusinessDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA6D1F6D8BCB00583DB2 /* BusinessDetailController.swift */; };
 		90DAFA731F6D8CB500583DB2 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA721F6D8CB500583DB2 /* Business.swift */; };
 		90DAFA7B1F6DB37B00583DB2 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA791F6DB37B00583DB2 /* BusinessCell.swift */; };
 		90DAFA7C1F6DB37B00583DB2 /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DAFA7A1F6DB37B00583DB2 /* BusinessCell.xib */; };
@@ -70,6 +70,7 @@
 		903240E31F8C5B9700B51D17 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationType.swift; path = Pilot_Invitee/UI/NotificationType.swift; sourceTree = "<group>"; };
 		903240E61F8C64F600B51D17 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationCell.swift; path = Pilot_Invitee/UI/NotificationCell.swift; sourceTree = "<group>"; };
 		903240E81F8D9B7900B51D17 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NotificationCell.xib; path = Pilot_Invitee/UI/NotificationCell.xib; sourceTree = "<group>"; };
+		906D73B81FAF484E00DF113C /* TestingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestingPopUpViewController.swift; path = Pilot_Invitee/UI/TestingPopUpViewController.swift; sourceTree = "<group>"; };
 		90D0C9B71F78733700B80694 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		90DAFA351F6C066200583DB2 /* Pilot_Invitee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pilot_Invitee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90DAFA381F6C066200583DB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		90DAFA5A1F6C066200583DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90DAFA671F6C2BEC00583DB2 /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkLayer.swift; path = Pilot_Invitee/Network/NetworkLayer.swift; sourceTree = "<group>"; };
 		90DAFA6A1F6D8B1800583DB2 /* BusinessMasterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusinessMasterController.swift; path = Pilot_Invitee/UI/BusinessMasterController.swift; sourceTree = "<group>"; };
-		90DAFA6D1F6D8BCB00583DB2 /* BusinessDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusinessDetailController.swift; path = Pilot_Invitee/UI/BusinessDetailController.swift; sourceTree = "<group>"; };
 		90DAFA721F6D8CB500583DB2 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Business.swift; path = Pilot_Invitee/Model/Business.swift; sourceTree = "<group>"; };
 		90DAFA791F6DB37B00583DB2 /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusinessCell.swift; path = Pilot_Invitee/UI/BusinessCell.swift; sourceTree = "<group>"; };
 		90DAFA7A1F6DB37B00583DB2 /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BusinessCell.xib; path = Pilot_Invitee/UI/BusinessCell.xib; sourceTree = "<group>"; };
@@ -158,6 +158,7 @@
 				90066AE61F89A9AE0019A637 /* NotificationPresenter.swift */,
 				90066AE41F89A9600019A637 /* NotificationController.swift */,
 				903240E31F8C5B9700B51D17 /* NotificationType.swift */,
+				906D73B81FAF484E00DF113C /* TestingPopUpViewController.swift */,
 			);
 			name = NotificationController;
 			sourceTree = "<group>";
@@ -178,6 +179,13 @@
 				903240E81F8D9B7900B51D17 /* NotificationCell.xib */,
 			);
 			name = NotificationCell;
+			sourceTree = "<group>";
+		};
+		90AF2B6B1FAFEE4200FB4E50 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PopUp;
 			sourceTree = "<group>";
 		};
 		90D0C9B61F78729400B80694 /* Supporting Classes */ = {
@@ -256,6 +264,7 @@
 		90DAFA691F6D8A6300583DB2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				90AF2B6B1FAFEE4200FB4E50 /* PopUp */,
 				903240E51F8C64C100B51D17 /* NotificationCell */,
 				90066AE31F89A93A0019A637 /* NotificationController */,
 				900A06D01F769EBD00F93496 /* LocationController */,
@@ -269,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				90DAFA6A1F6D8B1800583DB2 /* BusinessMasterController.swift */,
-				90DAFA6D1F6D8BCB00583DB2 /* BusinessDetailController.swift */,
 				901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */,
 			);
 			name = BusinessController;
@@ -368,6 +376,7 @@
 					90DAFA341F6C066200583DB2 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = RTEDH52U6R;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					90DAFA481F6C066200583DB2 = {
@@ -459,25 +468,19 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Pilot_Invitee/Pods-Pilot_Invitee-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Outlaw/Outlaw.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
-				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Outlaw.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -517,7 +520,6 @@
 				90D0C9B81F78733700B80694 /* Extensions.swift in Sources */,
 				90066AE71F89A9AE0019A637 /* NotificationPresenter.swift in Sources */,
 				90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */,
-				90DAFA6E1F6D8BCB00583DB2 /* BusinessDetailController.swift in Sources */,
 				90066AD81F7F18880019A637 /* TranslationLayer.swift in Sources */,
 				90DAFA6B1F6D8B1800583DB2 /* BusinessMasterController.swift in Sources */,
 				90DAFA731F6D8CB500583DB2 /* Business.swift in Sources */,
@@ -525,6 +527,7 @@
 				90DAFA7B1F6DB37B00583DB2 /* BusinessCell.swift in Sources */,
 				901512741F7DCD8E00C388CF /* BusinessMasterPresenter.swift in Sources */,
 				900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */,
+				906D73B91FAF484E00DF113C /* TestingPopUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,12 +682,15 @@
 			baseConfigurationReference = 1F7ECF2614FD3AA4C3141EFE /* Pods-Pilot_Invitee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RTEDH52U6R;
 				INFOPLIST_FILE = Pilot_Invitee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Gokul-Narasimhan.Pilot-Invitee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pilot_Invitee-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -694,12 +700,14 @@
 			baseConfigurationReference = 92F88533AE3D57E9FFF63A84 /* Pods-Pilot_Invitee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RTEDH52U6R;
 				INFOPLIST_FILE = Pilot_Invitee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Gokul-Narasimhan.Pilot-Invitee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pilot_Invitee-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
