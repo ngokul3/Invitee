@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import MessageUI
 import SafariServices
+import PopupDialog
 
 
 protocol BusinessViewDelegate {
@@ -17,14 +18,19 @@ protocol BusinessViewDelegate {
 }
 class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, SFSafariViewControllerDelegate , BusinessViewDelegate {
    
-    
-   
     @IBOutlet weak var tableView: UITableView!
+
+    
+    @IBAction func clickNotification(_ sender: Any) {
+        
+        showImageDialog()
+    }
+    
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var locationSearched : String = ""
-    private var businesses = [Business]()
+    fileprivate var businesses = [Business]()
     fileprivate var presenter : BusinessMasterPresenter!
   //  fileprivate var businessDetailMaker : DependencyRegistry.BusinessDetailControllerMaker!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
@@ -46,6 +52,8 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         self.businessNotificationControllerMaker = businessNotificationControllerMaker
     }
     
+    
+    
     func businessInfoClicked(businessInfoURL : String)
     {
         let urlString = businessInfoURL
@@ -62,6 +70,8 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         dismiss(animated: true)
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //    let viewController = segue.destination as! NotificationController
 //        viewController.businesses  = businesses.filter({$0.selected == true})
@@ -72,14 +82,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         super.viewDidLoad()
         
         self.navigationController?.setToolbarHidden(false, animated: true)
-       // self.navigationController?.it
-     //    searchController.searchResultsUpdater = self as! UISearchResultsUpdating
-    //    self.navigationItem.searchController = searchController
-      //  searchController.searchBar.delegate = self as? UISearchBarDelegate
-       // self.tableView.tableHeaderView = searchController.searchBar
-        //self.tableView.reloadData()
-//        tableView.tableHeaderView = searchController.searchBar
-
+     
         BusinessCell.register(with: tableView)
         
         self.presenter.loadData( finished: {
@@ -134,6 +137,122 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     }
 }
 
+extension BusinessMasterController{
+    func showImageDialog(animated: Bool = true) {
+        
+        // Prepare the popup assets
+        let title = "THIS IS THE DIALOG TITLE"
+        let message = "This is the message section of the popup dialog default view"
+        let image = UIImage(named: "Invite.png")
+        
+        let popup = PopupDialog(title: title, message: message, image: image)
+        
+        let buttonOne = CancelButton(title: "CANCEL") {
+            //self.label.text = "You canceled the Invite."
+        }
+        
+        buttonOne.addTarget(self, action:#selector(self.cancelClicked), for: .touchUpInside)
+        
+        let buttonTwo = DefaultButton(title: "Send a Mail") {
+            //   self.label.text = "Email"
+        }
+        
+        buttonTwo.addTarget(self, action:#selector(self.mailClicked), for: .touchUpInside)
+        
+        let buttonThree = DefaultButton(title: "Send a Message") {
+            //    self.label.text = "Message)"
+        }
+        
+        buttonThree.addTarget(self, action:#selector(self.messageClicked), for: .touchUpInside)
+        
+        popup.addButtons([buttonOne, buttonTwo, buttonThree])
+        
+        self.present(popup, animated: animated, completion: nil)
+    }
+    
+    
+    func cancelClicked()
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func mailClicked()
+    {
+        let testB = Business(name: "tests", rating: 1, image_url: "", selected: true, url: "")
+        businesses.append(testB)
+        
+        //sendMailNotification(businessesForMail : businesses)
+    }
+    
+    func messageClicked()
+    {
+        let testB = Business(name: "tests", rating: 1, image_url: "", selected: true, url: "")
+        businesses.append(testB)
+        
+        //sendMSGNotification(businessesForMSG : businesses)
+        
+    }
+}
+
+extension BusinessMasterController: MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate{
+    func sendMSGNotification(businessesForMSG : [Business]){
+        
+        if !MFMessageComposeViewController.canSendText(){
+            print("SMS services are not available")
+            return
+        }
+        
+        let msgComposer = MFMessageComposeViewController()
+        msgComposer.messageComposeDelegate = self
+        
+        
+        var businessInfo  = String()
+        
+        for business in businesses
+        {
+            businessInfo = businessInfo + "<br>" + business.name
+        }
+        
+        msgComposer.body = businessInfo
+        
+        self.present(msgComposer, animated: true, completion: nil)
+        
+        
+        
+    }
+    func sendMailNotification(businessesForMail : [Business]) {
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+        let mailComposer = MFMailComposeViewController()
+        
+        var businessInfo = String()
+        
+        for business in businesses
+        {
+            businessInfo = businessInfo + "<p> " + business.name + "</p> <br>"
+            
+        }
+        
+        mailComposer.setMessageBody(businessInfo, isHTML: true)
+        
+        mailComposer.mailComposeDelegate = self
+        
+        self.present(mailComposer, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith: MFMailComposeResult, error: Error?)
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
 
 extension BusinessMasterController{
     static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController
@@ -152,52 +271,7 @@ extension BusinessMasterController{
     }
 }
 
-/*
 
-extension BusinessMasterController : UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        let request = MKLocalSearchRequest()
-        let searchText = searchController.searchBar.text
-        request.naturalLanguageQuery = searchText
-        let search = MKLocalSearch(request: request)
-        
-        search.start(completionHandler: {response, _ in
-            
-            guard let response = response else {
-                return
-            }
-            
-            self.matchingItems = response.mapItems
-            //self.tableView.reloadData()
-            
-            for item in response.mapItems {
-                print("Name = \(item.name ?? "")")
-                print("Phone = \(item.phoneNumber ?? "")")
-            }
-            
-            self.loadData( location: searchText!,resultsLoaded: { business in
-                self.data = business
-                self.DataReceived()
-            })
-            
-        })
-    }
-    
-    func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func isFiltering() -> Bool {
-        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
-        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
-    }
-
-    
-    
-}
-
-*/
 
 
 

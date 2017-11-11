@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MessageUI
+import PopupDialog
+
 
 protocol NotificationType{
     func sendNotification(businesses : [Business])
@@ -22,6 +24,8 @@ class NotificationController: UIViewController,MFMailComposeViewControllerDelega
     fileprivate var presenter : NotificationPresenter!
     
     var businesses = [Business]()
+    
+  
     
     func configure(with presenter: NotificationPresenter, notificationTypeMaker : @escaping DependencyRegistry.NotificationTypeMaker)
     {

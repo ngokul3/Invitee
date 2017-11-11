@@ -47,8 +47,7 @@
                     <toolbarItems>
                         <barButtonItem title="Notify" id="KUG-r5-hoE">
                             <connections>
-                                <action selector="clickNotification:" destination="zeJ-co-XL0" id="5Zx-T9-Ygp"/>
-                                <segue destination="jEc-PZ-fDF" kind="presentation" id="Afo-z6-cnh"/>
+                                <action selector="clickNotification:" destination="zeJ-co-XL0" id="0pB-nF-qsT"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -140,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="853.60000000000002" y="-466.41679160419795"/>
         </scene>
-        <!--Testing Pop Up View Controller-->
+        <!--Notification Pop Up View Controller-->
         <scene sceneID="zfZ-eC-tvn">
             <objects>
-                <viewController id="jEc-PZ-fDF" customClass="TestingPopUpViewController" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jEc-PZ-fDF" customClass="NotificationPopUpViewController" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2pd-zq-WRD"/>
                         <viewControllerLayoutGuide type="bottom" id="Azd-CG-16Q"/>
@@ -165,8 +164,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ImageDIalog"/>
                                 <connections>
-                                    <action selector="showImageDialogTapped:" destination="jEc-PZ-fDF" eventType="touchUpInside" id="iWB-HP-UDN"/>
-                                    <action selector="showStandardDialogTapped:" destination="jEc-PZ-fDF" eventType="touchUpInside" id="Nkv-2e-r3z"/>
+                                    <action selector="showImageDialogTapped:" destination="jEc-PZ-fDF" eventType="touchUpInside" id="ZmP-gm-OSY"/>
                                 </connections>
                             </button>
                         </subviews>
