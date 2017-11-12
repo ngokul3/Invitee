@@ -16,7 +16,8 @@ import PopupDialog
 protocol BusinessViewDelegate {
     func businessInfoClicked(businessInfoURL : String)
 }
-class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, SFSafariViewControllerDelegate , BusinessViewDelegate {
+
+class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, SFSafariViewControllerDelegate , MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, BusinessViewDelegate {
    
     @IBOutlet weak var tableView: UITableView!
 
@@ -24,6 +25,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     @IBAction func clickNotification(_ sender: Any) {
         
         showImageDialog()
+      //  sendMailNotification(businessesForMail: businesses)
     }
     
     
@@ -178,25 +180,25 @@ extension BusinessMasterController{
     
     func mailClicked()
     {
-        let testB = Business(name: "tests", rating: 1, image_url: "", selected: true, url: "")
-        businesses.append(testB)
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+        let mailComposer = MFMailComposeViewController()
         
-        //sendMailNotification(businessesForMail : businesses)
+        var businessInfo = String()
+        
+        businessInfo = ConvertToHTMLTable(businessSelected: businesses.filter({$0.selected == true}))
+        
+        mailComposer.setMessageBody(businessInfo, isHTML: true)
+        
+        mailComposer.mailComposeDelegate = self
+        
+        self.present(mailComposer, animated: true, completion: nil)
     }
     
     func messageClicked()
     {
-        let testB = Business(name: "tests", rating: 1, image_url: "", selected: true, url: "")
-        businesses.append(testB)
-        
-        //sendMSGNotification(businessesForMSG : businesses)
-        
-    }
-}
-
-extension BusinessMasterController: MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate{
-    func sendMSGNotification(businessesForMSG : [Business]){
-        
         if !MFMessageComposeViewController.canSendText(){
             print("SMS services are not available")
             return
@@ -208,39 +210,18 @@ extension BusinessMasterController: MFMailComposeViewControllerDelegate, MFMessa
         
         var businessInfo  = String()
         
-        for business in businesses
-        {
-            businessInfo = businessInfo + "<br>" + business.name
-        }
+        businessInfo = ConvertToHTMLTable(businessSelected: businesses.filter({$0.selected == true}))
+        
+//        
+//        for business in businesses.filter({$0.selected == true})
+//        {
+//            businessInfo = businessInfo + "<br>" + business.name
+//        }
         
         msgComposer.body = businessInfo
         
         self.present(msgComposer, animated: true, completion: nil)
         
-        
-        
-    }
-    func sendMailNotification(businessesForMail : [Business]) {
-        if !MFMailComposeViewController.canSendMail() {
-            print("Mail services are not available")
-            return
-        }
-        let mailComposer = MFMailComposeViewController()
-        
-        var businessInfo = String()
-        
-        for business in businesses
-        {
-            businessInfo = businessInfo + "<p> " + business.name + "</p> <br>"
-            
-        }
-        
-        mailComposer.setMessageBody(businessInfo, isHTML: true)
-        
-        mailComposer.mailComposeDelegate = self
-        
-        self.present(mailComposer, animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -253,6 +234,7 @@ extension BusinessMasterController: MFMailComposeViewControllerDelegate, MFMessa
     }
     
 }
+
 
 extension BusinessMasterController{
     static func fromLocationStoryboard(with locationSearched: String)-> BusinessMasterController
@@ -270,7 +252,43 @@ extension BusinessMasterController{
         
     }
 }
+extension BusinessMasterController{
+    func ConvertToHTMLTable(businessSelected : [Business]) -> String
+    {
+        var itemCount = 1
+        var innerHTML = String()
+        let htmlHeader = """
+                <!DOCTYPE>
+                <HTML>
+                    <head>
+                    </head>
+                    <body>
+                        <table>
+                        
 
+            """
+        let htmlFooter = """
+                       
+                        </table>
+                    </body>
+                </HTML>
+            """
+        
+        for business in businessSelected {
+            innerHTML += "<tr>"
+            innerHTML += "<td> " + String(itemCount) + "</td>"
+            //innerHTML += "<td>" + "<img src = " + business.image_url + "height=100 width=100 >"
+            innerHTML +=  "<td><a href=" + business.url + ">" +  business.name + "</a>  </td>"
+            
+            innerHTML += "</tr>"
+            itemCount = itemCount + 1
+        }
+        
+        let html  = htmlHeader + innerHTML + htmlFooter
+        return html
+        
+    }
+}
 
 
 
