@@ -12,7 +12,6 @@ import MessageUI
 import SafariServices
 import PopupDialog
 
-
 protocol BusinessViewDelegate {
     func businessInfoClicked(businessInfoURL : String)
 }
@@ -210,16 +209,13 @@ extension BusinessMasterController{
         
         var businessInfo  = String()
         
-        businessInfo = ConvertToHTMLTable(businessSelected: businesses.filter({$0.selected == true}))
+        businessInfo = ConvertToMSGBody(businessSelected: businesses.filter({$0.selected == true}))
         
-//        
-//        for business in businesses.filter({$0.selected == true})
-//        {
-//            businessInfo = businessInfo + "<br>" + business.name
-//        }
+     //   let attributedText: NSAttributedString = attributedString(withHTML: businessInfo)
         
+    
         msgComposer.body = businessInfo
-        
+            
         self.present(msgComposer, animated: true, completion: nil)
         
         
@@ -276,7 +272,7 @@ extension BusinessMasterController{
         
         for business in businessSelected {
             innerHTML += "<tr>"
-            innerHTML += "<td> " + String(itemCount) + "</td>"
+            innerHTML += "<td> " + String(itemCount) + ") " + "</td>"
             //innerHTML += "<td>" + "<img src = " + business.image_url + "height=100 width=100 >"
             innerHTML +=  "<td><a href=" + business.url + ">" +  business.name + "</a>  </td>"
             
@@ -288,8 +284,21 @@ extension BusinessMasterController{
         return html
         
     }
+    
+    func ConvertToMSGBody(businessSelected : [Business])-> String{
+        
+        var itemCount = 1
+        var innerMSGBody = String()
+        for business in businessSelected {
+            innerMSGBody += String(itemCount) + ") "
+            innerMSGBody +=  business.name
+            innerMSGBody += " "
+             itemCount = itemCount + 1
+        }
+        
+        return innerMSGBody
+    }
+    
 }
-
-
 
 

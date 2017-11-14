@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,34 +18,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="307" height="60.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOC-NK-xCV">
-                        <rect key="frame" x="105" y="8" width="202" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOC-NK-xCV">
+                        <rect key="frame" x="113" y="2" width="194" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EI-Pf-hIe">
-                        <rect key="frame" x="87" y="32" width="78" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5EI-Pf-hIe">
+                        <rect key="frame" x="113" y="39" width="78" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="78" id="2f9-Kl-gi3"/>
+                        </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJG-kB-AQm">
-                        <rect key="frame" x="6" y="7" width="68" height="46"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TJG-kB-AQm">
+                        <rect key="frame" x="6" y="2" width="68" height="57"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fm4-vr-TBI">
-                        <rect key="frame" x="79" y="8" width="25" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessInfo" translatesAutoresizingMaskIntoConstraints="NO" id="vMw-5D-S13">
+                        <rect key="frame" x="79" y="9" width="26" height="26"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxY-f2-X6e">
+                        <rect key="frame" x="79" y="7" width="31" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button"/>
                         <connections>
-                            <action selector="businessInfoClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uag-f0-LGe"/>
+                            <action selector="businessInfoClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pHZ-Kc-1QX"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BusinessInfo" translatesAutoresizingMaskIntoConstraints="NO" id="vMw-5D-S13">
-                        <rect key="frame" x="79" y="9" width="25" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="TJG-kB-AQm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-10" id="28f-s1-N2X"/>
+                    <constraint firstAttribute="bottom" secondItem="TJG-kB-AQm" secondAttribute="bottom" constant="1.5" id="ExO-JC-ZjO"/>
+                    <constraint firstItem="vOC-NK-xCV" firstAttribute="leading" secondItem="vMw-5D-S13" secondAttribute="trailing" constant="8" symbolic="YES" id="KqO-2V-JM3"/>
+                    <constraint firstItem="5EI-Pf-hIe" firstAttribute="top" secondItem="vOC-NK-xCV" secondAttribute="bottom" constant="4" id="Ntc-Sn-QOE"/>
+                    <constraint firstItem="vOC-NK-xCV" firstAttribute="bottom" secondItem="vMw-5D-S13" secondAttribute="bottom" id="cU0-db-S6N"/>
+                    <constraint firstAttribute="bottom" secondItem="5EI-Pf-hIe" secondAttribute="bottom" constant="1.5" id="eUo-O2-T1U"/>
+                    <constraint firstAttribute="trailing" secondItem="vOC-NK-xCV" secondAttribute="trailing" id="gOf-jL-nqw"/>
+                    <constraint firstItem="vMw-5D-S13" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="jqa-dI-Iuo"/>
+                    <constraint firstItem="5EI-Pf-hIe" firstAttribute="leading" secondItem="TJG-kB-AQm" secondAttribute="trailing" constant="39" id="l2t-yz-OE7"/>
+                    <constraint firstItem="TJG-kB-AQm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="l3i-bm-6iK"/>
+                    <constraint firstItem="vOC-NK-xCV" firstAttribute="top" secondItem="TJG-kB-AQm" secondAttribute="top" id="mIo-hV-tSg"/>
+                    <constraint firstItem="5EI-Pf-hIe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="113" id="sBb-RE-5Go"/>
+                    <constraint firstItem="5EI-Pf-hIe" firstAttribute="leading" secondItem="vOC-NK-xCV" secondAttribute="leading" id="xEA-6K-Gg8"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imgBusiness" destination="TJG-kB-AQm" id="9Ym-oN-3Iw"/>

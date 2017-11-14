@@ -36,9 +36,9 @@ class BusinessCell: UITableViewCell {
     }
 
     @IBAction func businessInfoClick(_ sender: Any) {
-        
-        delegate?.businessInfoClicked(businessInfoURL: businessURL)
+         delegate?.businessInfoClicked(businessInfoURL: businessURL)
     }
+   
 }
 
 extension BusinessCell {
