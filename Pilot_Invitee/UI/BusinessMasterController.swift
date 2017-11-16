@@ -34,20 +34,20 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     fileprivate var businesses = [Business]()
     fileprivate var presenter : BusinessMasterPresenter!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
-    fileprivate var businessNotificationMaker : DependencyRegistry.BusinessNotificationControllerMaker!
+   // fileprivate var businessNotificationMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
     
-    fileprivate var businessNotificationControllerMaker : DependencyRegistry.BusinessNotificationControllerMaker!
+  //  fileprivate var businessNotificationControllerMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
     func configure(with presenter: BusinessMasterPresenter,
-                   businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker,
-                   businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker,
-                   businessNotificationControllerMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
+                   businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker)
+//                   businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker,
+//                   businessNotificationControllerMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
     {
         self.presenter = presenter
         self.businessCellMaker = businessCellMaker
-        self.businessNotificationMaker = businessNotificationMaker
-        self.businessNotificationControllerMaker = businessNotificationControllerMaker
+//        self.businessNotificationMaker = businessNotificationMaker
+//        self.businessNotificationControllerMaker = businessNotificationControllerMaker
     }
     
     
