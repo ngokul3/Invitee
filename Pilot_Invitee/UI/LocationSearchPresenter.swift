@@ -29,7 +29,6 @@ protocol  LocationSearchPresenter {
 
 class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
     
-    private var search:MKLocalSearch? =  nil
     
     var viewController =  UIViewController()
     var searchCompleter = MKLocalSearchCompleter()
@@ -37,11 +36,6 @@ class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
     var places = [MKLocalSearchCompletion]()
     
     weak var locationDelegate:LocationDataSourceDelegate?
-    //weak var businessDelegate: LocationSearchedDelegate?
-    //fileprivate var modelLayer : ModelLayer
-    //fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
-    
-   
     
     override init() {
 
@@ -80,12 +74,8 @@ extension LocationSearchPresenterImpl:CLLocationManagerDelegate{
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         guard let location = locations.first else {return}
-        
         searchCompleter.region = MKCoordinateRegionMakeWithDistance(location.coordinate, 150, 150)
-        
-        
     }
     
 }
@@ -107,7 +97,7 @@ extension LocationSearchPresenterImpl:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let item = locationAt(index: indexPath)
+        let item =  locationAt(index: indexPath)
         
         cell.textLabel?.text = item.title
         
@@ -126,9 +116,7 @@ extension LocationSearchPresenterImpl:UITableViewDelegate{
         let item = locationAt(index: indexPath)
         let request = MKLocalSearchRequest()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        request.naturalLanguageQuery = item.subtitle
-        
-        
+        request.naturalLanguageQuery = item.title// item.subtitle
         
         locationDelegate?.popNextController(location : request.naturalLanguageQuery! ,cell : cell)
        
@@ -139,8 +127,8 @@ extension LocationSearchPresenterImpl:UITableViewDelegate{
 extension LocationSearchPresenterImpl:MKLocalSearchCompleterDelegate{
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        places = completer.results
-        loadData()
+        places = completer.results.filter({$0.subtitle.isEmpty == true})
+          loadData()
         
     }
     
@@ -159,7 +147,7 @@ extension LocationSearchPresenterImpl:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
-        
+        searchCompleter.filterType = .locationsOnly
     }
 }
 

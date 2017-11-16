@@ -11,9 +11,6 @@ protocol DependencyRegistry {
     typealias BusinessMasterControllerMaker = (String) -> BusinessMasterController
     func makeBusinessMasterViewController(location : String) -> BusinessMasterController
     
-//    typealias BusinessDetailControllerMaker = (Business, BusinessDelegate)  -> BusinessDetailController
-//    func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
-//
     typealias BusinessNotificationControllerMaker = ([Business]) -> NotificationController
     func makeBusinessNotificationController(businesses: [Business]) -> NotificationController
     
@@ -99,13 +96,6 @@ class DependencyRegistryImpl: DependencyRegistry
     func makeBusinessMasterViewController(location: String) -> BusinessMasterController {
         return container.resolve(BusinessMasterController.self, argument: location)!
     }
-    
-//    func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController {
-//        
-//        return container.resolve(BusinessDetailController.self, arguments: business, businessDelegate)!
-//      
-//    }
-//    
     
     func makeBusinessNotificationController(businesses: [Business]) -> NotificationController{
         return container.resolve(NotificationController.self, argument: businesses)!

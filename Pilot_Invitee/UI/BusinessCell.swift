@@ -15,14 +15,12 @@ typealias UpdateBusinessImageBlock = (UIImage)-> Void
 
 class BusinessCell: UITableViewCell {
 
-   // fileprivate var presenter : BusinessCellPresenter!
     var delegate : BusinessViewDelegate?
     var businessURL = String()
     @IBOutlet weak var imgRating: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgBusiness: UIImageView!
     
- //   var business: Business!
     
     override func awakeFromNib() {
         super.awakeFromNib()

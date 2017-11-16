@@ -24,7 +24,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     @IBAction func clickNotification(_ sender: Any) {
         
         showImageDialog()
-      //  sendMailNotification(businessesForMail: businesses)
+     
     }
     
     
@@ -33,7 +33,6 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     var locationSearched : String = ""
     fileprivate var businesses = [Business]()
     fileprivate var presenter : BusinessMasterPresenter!
-  //  fileprivate var businessDetailMaker : DependencyRegistry.BusinessDetailControllerMaker!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
     fileprivate var businessNotificationMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
@@ -41,13 +40,11 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     fileprivate var businessNotificationControllerMaker : DependencyRegistry.BusinessNotificationControllerMaker!
     
     func configure(with presenter: BusinessMasterPresenter,
-                //   businessDetailControllerMaker: @escaping DependencyRegistry.BusinessDetailControllerMaker,
                    businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker,
                    businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker,
                    businessNotificationControllerMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
     {
         self.presenter = presenter
-     //   self.businessDetailMaker = businessDetailControllerMaker
         self.businessCellMaker = businessCellMaker
         self.businessNotificationMaker = businessNotificationMaker
         self.businessNotificationControllerMaker = businessNotificationControllerMaker
@@ -210,10 +207,7 @@ extension BusinessMasterController{
         var businessInfo  = String()
         
         businessInfo = ConvertToMSGBody(businessSelected: businesses.filter({$0.selected == true}))
-        
-     //   let attributedText: NSAttributedString = attributedString(withHTML: businessInfo)
-        
-    
+     
         msgComposer.body = businessInfo
             
         self.present(msgComposer, animated: true, completion: nil)
@@ -241,13 +235,7 @@ extension BusinessMasterController{
         return vc
     }
 }
-extension BusinessMasterController{
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-        self.navigationController?.setToolbarHidden(true, animated: animated)
-        
-    }
-}
+
 extension BusinessMasterController{
     func ConvertToHTMLTable(businessSelected : [Business]) -> String
     {

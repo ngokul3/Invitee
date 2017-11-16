@@ -15,9 +15,6 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     @IBOutlet weak var tableView: UITableView!
     fileprivate var presenter : LocationSearchPresenter!
     fileprivate var businessMasterControllerMaker: DependencyRegistry.BusinessMasterControllerMaker!
-    //fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
-    //fileprivate var modelLayer : DependencyRegistry.
-    
     
     var searchController = UISearchController(searchResultsController: nil)
    
@@ -50,9 +47,7 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
         presenter.locationDelegate = self
         tableView.dataSource = presenter as? UITableViewDataSource
         tableView.delegate = presenter as? UITableViewDelegate
-        
-       // manager.delegate = dataSource
-
+   
         presenter.viewController = self
        
     }
