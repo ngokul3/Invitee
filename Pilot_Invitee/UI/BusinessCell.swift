@@ -59,34 +59,42 @@ extension BusinessCell {
     }
   
     func SetbusinessImage(forBusinessImage businessImageURL : String) {
-        let businessImageURL = URL(string: businessImageURL)!
-         let session = URLSession(configuration: .default)
         
-        let downloadPicTask = session.dataTask(with: businessImageURL) { (data, response, error) in
-            // The download has finished.
-            if let e = error {
-                print("Error downloading cat picture: \(e)")
-            } else {
-                if let _ = response as? HTTPURLResponse {
-                   
-                    if let imageData = data {
-                        // Finally convert that Data into an image and do what you wish with it.
-                        DispatchQueue.main.async(execute: {
-                            
-                            self.imgBusiness.image = UIImage(data: imageData)
-                        })
+        
+         if let _ = URL(string: businessImageURL)
+        {
+            let businessImageURL = URL(string: businessImageURL)!
+            let session = URLSession(configuration: .default)
+            
+            let downloadPicTask = session.dataTask(with: businessImageURL) { (data, response, error) in
+                // The download has finished.
+                if let e = error {
+                    print("Error downloading cat picture: \(e)")
+                } else {
+                    if let _ = response as? HTTPURLResponse {
                         
-                    } else {
-                        print("Couldn't get image: Image is nil")
+                        if let imageData = data {
+                            // Finally convert that Data into an image and do what you wish with it.
+                            DispatchQueue.main.async(execute: {
+                                
+                                self.imgBusiness.image = UIImage(data: imageData)
+                            })
+                            
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    }else {
+                        print("Couldn't get response code for some reason")
                     }
-                }else {
-                    print("Couldn't get response code for some reason")
                 }
             }
+            downloadPicTask.resume()
+            
         }
-         downloadPicTask.resume()
+        }
         
-    }
+        
+        
     
     
 }
