@@ -8,8 +8,6 @@
 
 import Foundation
 
-//import CoreData
-
 import MapKit
 
 typealias FinishedBlock = ()->Void

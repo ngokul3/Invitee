@@ -52,7 +52,6 @@
 		38C41EC07D9AFBE4AB5C7A97 /* Pods_Pilot_Invitee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pilot_Invitee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90066AD71F7F18880019A637 /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslationLayer.swift; path = Pilot_Invitee/Translation/TranslationLayer.swift; sourceTree = "<group>"; };
 		90066AD91F7F1A860019A637 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelLayer.swift; path = Pilot_Invitee/Model/ModelLayer.swift; sourceTree = "<group>"; };
-		90066ADB1F812A5B0019A637 /* Injection */ = {isa = PBXFileReference; lastKnownFileType = text; name = Injection; path = "../../../../Lynda Downloads/iOS Architecture/Ex_Files_iOS_App_Patterns_Architecture/Exercise Files/Ch05/05_05_Finished/KnownSpys/Injection"; sourceTree = "<group>"; };
 		90066ADD1F812AA40019A637 /* DependencyRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyRegistry.swift; sourceTree = "<group>"; };
 		90066ADF1F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		90066AE11F815FED0019A637 /* BusinessCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessCellPresenter.swift; path = Pilot_Invitee/UI/BusinessCellPresenter.swift; sourceTree = "<group>"; };
@@ -168,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				90066ADC1F812A680019A637 /* Dependencies */,
-				90066ADB1F812A5B0019A637 /* Injection */,
 				90D0C9B61F78729400B80694 /* Supporting Classes */,
 				90DAFA6F1F6D8C1100583DB2 /* Model */,
 				90DAFA691F6D8A6300583DB2 /* UI */,

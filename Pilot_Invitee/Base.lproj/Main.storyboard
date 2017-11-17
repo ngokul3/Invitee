@@ -50,7 +50,7 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Notify" id="KUG-r5-hoE">
+                        <barButtonItem title="Notify" width="372.5" id="KUG-r5-hoE">
                             <connections>
                                 <action selector="clickNotification:" destination="zeJ-co-XL0" id="Fxu-Zs-u2t"/>
                             </connections>

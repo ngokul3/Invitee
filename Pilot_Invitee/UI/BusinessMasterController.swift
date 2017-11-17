@@ -22,35 +22,23 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 
     
     @IBAction func clickNotification(_ sender: Any) {
-        
         showImageDialog()
-     
     }
-    
-    
     let searchController = UISearchController(searchResultsController: nil)
     
     var locationSearched : String = ""
     fileprivate var businesses = [Business]()
     fileprivate var presenter : BusinessMasterPresenter!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
-   // fileprivate var businessNotificationMaker : DependencyRegistry.BusinessNotificationControllerMaker!
-    
-    
-  //  fileprivate var businessNotificationControllerMaker : DependencyRegistry.BusinessNotificationControllerMaker!
-    
+ 
     func configure(with presenter: BusinessMasterPresenter,
                    businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker)
-//                   businessNotificationMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker,
-//                   businessNotificationControllerMaker : @escaping DependencyRegistry.BusinessNotificationControllerMaker)
     {
         self.presenter = presenter
         self.businessCellMaker = businessCellMaker
-//        self.businessNotificationMaker = businessNotificationMaker
-//        self.businessNotificationControllerMaker = businessNotificationControllerMaker
+        
+       
     }
-    
-    
     
     func businessInfoClicked(businessInfoURL : String)
     {
@@ -68,14 +56,6 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         dismiss(animated: true)
     }
     
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //    let viewController = segue.destination as! NotificationController
-//        viewController.businesses  = businesses.filter({$0.selected == true})
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,7 +64,16 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         BusinessCell.register(with: tableView)
         
         self.presenter.loadData( finished: {
+            if(self.presenter.data.count == 0)
+            {
+                let alert = UIAlertController(title: "Location Not Found", message: "Request got Timedout. Try again after sometime or Specify more exact location", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
             self.DataReceived()
+            
         })
     }
     
@@ -102,9 +91,6 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//        let followedObjectID = businesses[indexPath.row];
        if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark)
         {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
@@ -112,8 +98,6 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         }
         else
         {
-            
-           
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             businesses[indexPath.row].selected = true
             

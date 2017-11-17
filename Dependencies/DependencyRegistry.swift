@@ -10,25 +10,10 @@ protocol DependencyRegistry {
     
     typealias BusinessMasterControllerMaker = (String) -> BusinessMasterController
     func makeBusinessMasterViewController(location : String) -> BusinessMasterController
-    
-//    typealias BusinessNotificationControllerMaker = ([Business]) -> NotificationController
-//    func makeBusinessNotificationController(businesses: [Business]) -> NotificationController
-//    
-//    typealias NotificationTypeMaker = ([Business], NotificationType)-> Void
-//    func makeNotificationType(businesses: [Business] ,notificationType : NotificationType)
-//
-   
-  //  func makeBusinessDetailController(with business: Business, businessDelegate: BusinessDelegate) -> BusinessDetailController
 }
 
 class DependencyRegistryImpl: DependencyRegistry
 {
-    
-//    func makeNotificationType(businesses: [Business] ,notificationType : NotificationType)
-//    {
-//        notificationType.sendNotification(businesses: businesses)
-//    }
-    
     
     var container: Container
     
@@ -63,8 +48,7 @@ class DependencyRegistryImpl: DependencyRegistry
         container.register(BusinessMasterPresenter.self) { (r, modelLayer : ModelLayer,location: String)  in BusinessMasterPresenterImpl(modelLayer: r.resolve(ModelLayer.self)!, location: location) }
         
         container.register(BusinessCellPresenter.self) { (r, business: Business) in BusinessCellPresenterImpl(business: business) }
-      //  container.register(NotificationPresenter.self){(r, businesses: [Business]) in NotificationPresenterImpl(businesses: businesses)}
-    }
+      }
     
     
     func registerViewControllers() {
@@ -79,12 +63,6 @@ class DependencyRegistryImpl: DependencyRegistry
             return vc
         }
         
-//        container.register(NotificationController.self){(r, businesses: [Business]) in
-//            let presenter = r.resolve(NotificationPresenter.self, argument: businesses)!
-//            let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "NotificationController") as! NotificationController
-//            vc.configure(with: presenter, notificationTypeMaker : self.makeNotificationType)
-//            return vc
-//        }
     }
     func makeBusinessCell(for tableView: UITableView, at indexPath: IndexPath, business: Business, businessViewDelegate : BusinessMasterController) -> BusinessCell {
         let presenter = container.resolve(BusinessCellPresenter.self, argument: business)!
@@ -95,10 +73,4 @@ class DependencyRegistryImpl: DependencyRegistry
     func makeBusinessMasterViewController(location: String) -> BusinessMasterController {
         return container.resolve(BusinessMasterController.self, argument: location)!
     }
-    
-//    func makeBusinessNotificationController(businesses: [Business]) -> NotificationController{
-//        return container.resolve(NotificationController.self, argument: businesses)!
-//    }
-  
-    
 }
