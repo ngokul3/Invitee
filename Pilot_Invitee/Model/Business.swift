@@ -16,6 +16,7 @@ struct Business
     var image_url : String
     var selected : Bool
     var url : String
+    var display_address : [String]
 }
 
 
@@ -30,6 +31,7 @@ extension Business: Deserializable {
          rating = try object.value(for: "rating")
          image_url = try object.value(for: "image_url")
          url = try object.value(for: "url")
+          display_address = try object.value(for: "location.display_address")
            }
     
    

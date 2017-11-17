@@ -30,18 +30,19 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
        // presenter = LocationSearchPresenter()
-
-        searchController.searchBar.delegate = self as? UISearchBarDelegate
-        
+//        searchController.definesPresentationContext = true
+//        searchController.searchBar.delegate = self as? UISearchBarDelegate
+//
         searchController =  UISearchController(searchResultsController:nil )
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = UISearchBarStyle.minimal
         searchController.searchBar.delegate = presenter as? UISearchBarDelegate
-        searchController.isActive = true
+        
+        //searchController.isActive = true
         tableView.tableHeaderView = searchController.searchBar
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        
+        searchController.searchBar.becomeFirstResponder()
         title = "Location Search"
         
         presenter.locationDelegate = self
@@ -52,7 +53,12 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
        
     }
     
-  
+    //Todo - delete this viewdidappear?
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        searchController.isActive = true
+//
+//    }
     func refreshData()
     {
         tableView.reloadData()
@@ -69,3 +75,12 @@ class LocationSearchController: UIViewController, LocationDataSourceDelegate{
     
     
 }
+//ToDo - Delete this metho?
+//
+extension LocationSearchController: UISearchControllerDelegate {
+    
+    func didPresentSearchController(searchController: UISearchController) {
+        self.searchController.searchBar.becomeFirstResponder()
+    }
+}
+

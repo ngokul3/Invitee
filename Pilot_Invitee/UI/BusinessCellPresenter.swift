@@ -12,6 +12,7 @@ protocol BusinessCellPresenter{
     var rating : Int {get}
     var businessImageURL : String{get}
     var businessURL : String{get}
+    var businessAddress : [String]{get}
 }
 
 
@@ -38,6 +39,10 @@ class BusinessCellPresenterImpl : BusinessCellPresenter{
     
     var businessImageURL: String{
         return business.image_url
+    }
+    
+    var businessAddress : [String]{
+        return business.display_address
     }
     
 }

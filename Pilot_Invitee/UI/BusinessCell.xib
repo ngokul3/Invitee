@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="61" id="KGk-i7-Jjw" customClass="BusinessCell" customModule="Pilot_Invitee" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="307" height="61"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="KGk-i7-Jjw" customClass="BusinessCell" customModule="Pilot_Invitee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="307" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="307" height="60.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="307" height="76.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOC-NK-xCV">
@@ -25,13 +25,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5EI-Pf-hIe">
-                        <rect key="frame" x="113" y="39" width="78" height="20"/>
+                        <rect key="frame" x="113" y="55" width="78" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="2f9-Kl-gi3"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TJG-kB-AQm">
-                        <rect key="frame" x="6" y="2" width="68" height="57"/>
+                        <rect key="frame" x="6" y="2" width="68" height="73"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessInfo" translatesAutoresizingMaskIntoConstraints="NO" id="vMw-5D-S13">
                         <rect key="frame" x="79" y="9" width="26" height="26"/>
@@ -43,29 +43,39 @@
                             <action selector="businessInfoClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pHZ-Kc-1QX"/>
                         </connections>
                     </button>
+                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zik-kx-7VM">
+                        <rect key="frame" x="113" y="36" width="194" height="17"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TJG-kB-AQm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-10" id="28f-s1-N2X"/>
+                    <constraint firstItem="Zik-kx-7VM" firstAttribute="top" secondItem="vOC-NK-xCV" secondAttribute="bottom" constant="1" id="2mD-ji-eip"/>
                     <constraint firstAttribute="bottom" secondItem="TJG-kB-AQm" secondAttribute="bottom" constant="1.5" id="ExO-JC-ZjO"/>
+                    <constraint firstItem="Zik-kx-7VM" firstAttribute="leading" secondItem="5EI-Pf-hIe" secondAttribute="leading" id="F4e-Pc-X4e"/>
                     <constraint firstItem="vOC-NK-xCV" firstAttribute="leading" secondItem="vMw-5D-S13" secondAttribute="trailing" constant="8" symbolic="YES" id="KqO-2V-JM3"/>
-                    <constraint firstItem="5EI-Pf-hIe" firstAttribute="top" secondItem="vOC-NK-xCV" secondAttribute="bottom" constant="4" id="Ntc-Sn-QOE"/>
                     <constraint firstItem="vOC-NK-xCV" firstAttribute="bottom" secondItem="vMw-5D-S13" secondAttribute="bottom" id="cU0-db-S6N"/>
                     <constraint firstAttribute="bottom" secondItem="5EI-Pf-hIe" secondAttribute="bottom" constant="1.5" id="eUo-O2-T1U"/>
                     <constraint firstAttribute="trailing" secondItem="vOC-NK-xCV" secondAttribute="trailing" id="gOf-jL-nqw"/>
                     <constraint firstItem="vMw-5D-S13" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="jqa-dI-Iuo"/>
+                    <constraint firstItem="Zik-kx-7VM" firstAttribute="trailing" secondItem="vOC-NK-xCV" secondAttribute="trailing" id="ktv-OE-x7J"/>
                     <constraint firstItem="5EI-Pf-hIe" firstAttribute="leading" secondItem="TJG-kB-AQm" secondAttribute="trailing" constant="39" id="l2t-yz-OE7"/>
                     <constraint firstItem="TJG-kB-AQm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="l3i-bm-6iK"/>
                     <constraint firstItem="vOC-NK-xCV" firstAttribute="top" secondItem="TJG-kB-AQm" secondAttribute="top" id="mIo-hV-tSg"/>
+                    <constraint firstItem="5EI-Pf-hIe" firstAttribute="top" secondItem="vOC-NK-xCV" secondAttribute="bottom" constant="20" id="n3K-rS-432"/>
                     <constraint firstItem="5EI-Pf-hIe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="113" id="sBb-RE-5Go"/>
                     <constraint firstItem="5EI-Pf-hIe" firstAttribute="leading" secondItem="vOC-NK-xCV" secondAttribute="leading" id="xEA-6K-Gg8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="displayAddress" destination="Zik-kx-7VM" id="q6g-jx-nWT"/>
                 <outlet property="imgBusiness" destination="TJG-kB-AQm" id="9Ym-oN-3Iw"/>
                 <outlet property="imgRating" destination="5EI-Pf-hIe" id="Gwj-uI-pJR"/>
                 <outlet property="lblName" destination="vOC-NK-xCV" id="gCh-Zi-14K"/>
             </connections>
-            <point key="canvasLocation" x="25.5" y="59.5"/>
+            <point key="canvasLocation" x="25.5" y="67.5"/>
         </tableViewCell>
     </objects>
     <resources>

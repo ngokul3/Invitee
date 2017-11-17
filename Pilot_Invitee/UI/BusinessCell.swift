@@ -21,6 +21,7 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgBusiness: UIImageView!
     
+    @IBOutlet weak var displayAddress: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,6 +54,13 @@ extension BusinessCell {
         imgRating.image = ratingImage(forRating: rating)
     }
     
+    func setBusinessAddress(businessAddress : [String])
+    {
+        if(businessAddress.count > 0)
+        {
+            self.displayAddress.text = businessAddress[0]
+        }
+    }
     func ratingImage(forRating rating: Int) -> UIImage? {
         let imageName = "\(rating)Stars"
         return UIImage(named: imageName)
@@ -106,6 +114,7 @@ extension BusinessCell {
         self.setRating(rating: presenter.rating)
         self.SetbusinessImage(forBusinessImage: presenter.businessImageURL)
         self.setBusinessURL(businessURL: presenter.businessURL)
+        self.setBusinessAddress(businessAddress: presenter.businessAddress)
         }
     
     }

@@ -149,5 +149,9 @@ extension LocationSearchPresenterImpl:UISearchBarDelegate{
         searchCompleter.queryFragment = searchText
         searchCompleter.filterType = .locationsOnly
     }
+    
+    
 }
+
+
 
