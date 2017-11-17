@@ -91,7 +91,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     func DataReceived() {
         tableView.reloadData()
     }
-     func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
@@ -101,15 +101,22 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark)
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//
+//        let followedObjectID = businesses[indexPath.row];
+       if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark)
         {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             businesses[indexPath.row].selected = false
         }
         else
         {
+            
+           
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             businesses[indexPath.row].selected = true
+            
         }
     }
     
@@ -130,6 +137,14 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
 
         businesses.append(business)
         let cell = businessCellMaker(tableView, indexPath, business, self)
+        
+        if(cell.isSelected)
+        {
+            cell.accessoryType = .checkmark
+        }
+        else{
+            cell.accessoryType = . none
+        }
         return cell
 
     }
