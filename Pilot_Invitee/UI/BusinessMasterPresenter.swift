@@ -15,6 +15,7 @@ typealias FinishedBlock = ()->Void
 protocol BusinessMasterPresenter{
     var data : [Business]{get set}
     var location : String {get}
+    var term : String {get}
     func loadData(finished: @escaping FinishedBlock )
 }
 class BusinessMasterPresenterImpl: BusinessMasterPresenter{
@@ -24,20 +25,22 @@ class BusinessMasterPresenterImpl: BusinessMasterPresenter{
     var modelLayer : ModelLayer
     
     var location: String
+    var term :  String
     
-    init(modelLayer: ModelLayer,location : String)
+    init(modelLayer: ModelLayer,location : String, term : String)
     {
         self.modelLayer = modelLayer
         self.location = location
+        self.term    = term
     }
     
     func loadData(finished: @escaping FinishedBlock )
     {
         
-        modelLayer.loadData(location: location,resultsLoaded: { businesses in
+        modelLayer.loadData(location: location, term: term, resultsLoaded: { businesses in
            self.data = businesses
             
-            finished()
+             finished()
             
         })
         

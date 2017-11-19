@@ -147,7 +147,7 @@ extension LocationSearchPresenterImpl:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
-        searchCompleter.filterType = .locationsOnly
+       // searchCompleter.filterType = .locationsOnly
     }
     
     

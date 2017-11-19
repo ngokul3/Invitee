@@ -13,8 +13,8 @@
 		90066ADE1F812AA40019A637 /* DependencyRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066ADD1F812AA40019A637 /* DependencyRegistry.swift */; };
 		90066AE01F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066ADF1F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift */; };
 		90066AE21F815FED0019A637 /* BusinessCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90066AE11F815FED0019A637 /* BusinessCellPresenter.swift */; };
-		900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D11F76C0E400F93496 /* LocationSearchController.swift */; };
 		900A06D41F76C79D00F93496 /* LocationSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */; };
+		901342041FC1F427003CF54B /* BusinessLocationFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901342031FC1F427003CF54B /* BusinessLocationFinder.swift */; };
 		901512741F7DCD8E00C388CF /* BusinessMasterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */; };
 		90D0C9B81F78733700B80694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0C9B71F78733700B80694 /* Extensions.swift */; };
 		90DAFA391F6C066200583DB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAFA381F6C066200583DB2 /* AppDelegate.swift */; };
@@ -55,8 +55,8 @@
 		90066ADD1F812AA40019A637 /* DependencyRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyRegistry.swift; sourceTree = "<group>"; };
 		90066ADF1F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		90066AE11F815FED0019A637 /* BusinessCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessCellPresenter.swift; path = Pilot_Invitee/UI/BusinessCellPresenter.swift; sourceTree = "<group>"; };
-		900A06D11F76C0E400F93496 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchController.swift; path = Pilot_Invitee/UI/LocationSearchController.swift; sourceTree = "<group>"; };
 		900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchPresenter.swift; path = Pilot_Invitee/UI/LocationSearchPresenter.swift; sourceTree = "<group>"; };
+		901342031FC1F427003CF54B /* BusinessLocationFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessLocationFinder.swift; path = Pilot_Invitee/UI/BusinessLocationFinder.swift; sourceTree = "<group>"; };
 		901512731F7DCD8E00C388CF /* BusinessMasterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusinessMasterPresenter.swift; path = Pilot_Invitee/UI/BusinessMasterPresenter.swift; sourceTree = "<group>"; };
 		90D0C9B71F78733700B80694 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		90DAFA351F6C066200583DB2 /* Pilot_Invitee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pilot_Invitee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,8 +142,8 @@
 		900A06D01F769EBD00F93496 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
-				900A06D11F76C0E400F93496 /* LocationSearchController.swift */,
 				900A06D31F76C79D00F93496 /* LocationSearchPresenter.swift */,
+				901342031FC1F427003CF54B /* BusinessLocationFinder.swift */,
 			);
 			name = LocationController;
 			sourceTree = "<group>";
@@ -475,6 +475,7 @@
 				90DAFA681F6C2BEC00583DB2 /* NetworkLayer.swift in Sources */,
 				90066ADA1F7F1A860019A637 /* ModelLayer.swift in Sources */,
 				90066ADE1F812AA40019A637 /* DependencyRegistry.swift in Sources */,
+				901342041FC1F427003CF54B /* BusinessLocationFinder.swift in Sources */,
 				90066AE01F812ABE0019A637 /* SwinjectStoryboard+Extensions.swift in Sources */,
 				90066AE21F815FED0019A637 /* BusinessCellPresenter.swift in Sources */,
 				90D0C9B81F78733700B80694 /* Extensions.swift in Sources */,
@@ -485,7 +486,6 @@
 				900A06D41F76C79D00F93496 /* LocationSearchPresenter.swift in Sources */,
 				90DAFA7B1F6DB37B00583DB2 /* BusinessCell.swift in Sources */,
 				901512741F7DCD8E00C388CF /* BusinessMasterPresenter.swift in Sources */,
-				900A06D21F76C0E400F93496 /* LocationSearchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
