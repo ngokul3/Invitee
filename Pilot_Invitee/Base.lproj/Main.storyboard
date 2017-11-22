@@ -119,10 +119,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="epa-t8-cnb">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="R21-41-PAQ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="kYc-pl-eMD"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="R21-41-PAQ">
+                            <connections>
+                                <action selector="btnCancelClick:" destination="OSg-se-3dg" id="x6K-0E-v57"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="kYc-pl-eMD">
+                            <connections>
+                                <action selector="btnSearchClick:" destination="OSg-se-3dg" id="tLA-fW-uHT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnCancel" destination="R21-41-PAQ" id="k5t-si-bQ3"/>
+                        <outlet property="btnSearch" destination="kYc-pl-eMD" id="xSZ-xq-Wo3"/>
                         <outlet property="searchController" destination="ulv-fv-1zT" id="O9T-Yb-gpg"/>
                         <outlet property="searchDisplayController" destination="ESa-5j-r2k" id="gR8-74-gND"/>
                         <outlet property="tableView" destination="xNB-Ul-U1F" id="TBK-LC-0P1"/>

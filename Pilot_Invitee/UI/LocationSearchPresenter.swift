@@ -11,8 +11,8 @@ import MapKit
 protocol LocationDataSourceDelegate: class{
     
     func refreshData()
-    func popNextController(location : String, cell : UITableViewCell)
-    
+    func popNextController(location : String)
+    func SearchBusiness()
 }
 
 protocol LocationSearchedDelegate: class{
@@ -114,11 +114,8 @@ extension LocationSearchPresenterImpl:UITableViewDelegate{
         
         
         let item = locationAt(index: indexPath)
-        let request = MKLocalSearchRequest()
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        request.naturalLanguageQuery = item.title// item.subtitle
-        
-        locationDelegate?.popNextController(location : request.naturalLanguageQuery! ,cell : cell)
+         places.removeAll()
+        locationDelegate?.popNextController(location : item.title)
        
     }
 }
@@ -138,7 +135,6 @@ extension LocationSearchPresenterImpl:MKLocalSearchCompleterDelegate{
     }
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         
-        
     }
 }
 
@@ -147,9 +143,13 @@ extension LocationSearchPresenterImpl:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
-       // searchCompleter.filterType = .locationsOnly
+        
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+         locationDelegate?.SearchBusiness()
+    }
     
 }
 

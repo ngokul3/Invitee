@@ -13,8 +13,10 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchController: UISearchBar!
     
+    @IBOutlet weak var btnCancel: UIBarButtonItem!
     @IBOutlet weak var txtBusinessType: UITextField!
     
+    @IBOutlet weak var btnSearch: UIBarButtonItem!
     fileprivate var presenter : LocationSearchPresenter!
     fileprivate var businessMasterControllerMaker: DependencyRegistry.BusinessMasterControllerMaker!
     
@@ -23,7 +25,14 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
         self.presenter = presenter
         self.businessMasterControllerMaker = businessMasterControllerMaker
     }
-     override func viewDidLoad() {
+    @IBAction func btnSearchClick(_ sender: Any) {
+        SearchBusiness()
+    }
+    @IBAction func btnCancelClick(_ sender: Any) {
+        txtBusinessType.endEditing(true)
+        searchController.endEditing(true)
+    }
+    override func viewDidLoad() {
         super.viewDidLoad()
          
         searchController.delegate = presenter as? UISearchBarDelegate
@@ -40,14 +49,20 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
         tableView.reloadData()
     }
     
-    func popNextController(location : String, cell : UITableViewCell)
-    {
-        
-        let businessMasterController = businessMasterControllerMaker(location, txtBusinessType.text!)
-        
-        navigationController?.pushViewController(businessMasterController, animated: true)
-        
-    }
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            txtBusinessType.becomeFirstResponder()
     
-
+        }
+    func popNextController(location : String)
+    {
+        searchController.text = location
+        refreshData()
+    }
+   
+    func SearchBusiness()
+    {
+        let businessMasterController = businessMasterControllerMaker(searchController.text!, txtBusinessType.text!)
+        navigationController?.pushViewController(businessMasterController, animated: true)
+    }
 }
