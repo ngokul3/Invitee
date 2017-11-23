@@ -140,7 +140,7 @@ extension BusinessMasterController{
         // Prepare the popup assets
         let title = "THIS IS THE DIALOG TITLE"
         let message = "This is the message section of the popup dialog default view"
-        let image = UIImage(named: "Invite.png")
+        let image = UIImage(named: "GreenInvite.png")
         
         let popup = PopupDialog(title: title, message: message, image: image)
         
