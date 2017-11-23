@@ -8,6 +8,9 @@
 import UIKit
 import MapKit
 
+typealias LocationNameBlock = (String?)-> Void
+//typealias JSONDictionary = [String:Any]
+
 protocol LocationDataSourceDelegate: class{
     
     func refreshData()
@@ -27,7 +30,7 @@ protocol  LocationSearchPresenter {
 }
 
 
-class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
+class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter, CLLocationManagerDelegate {
     
     
     var viewController =  UIViewController()
@@ -36,13 +39,20 @@ class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
     var places = [MKLocalSearchCompletion]()
     
     weak var locationDelegate:LocationDataSourceDelegate?
-    
+    let locationManager = CLLocationManager()
+
     override init() {
 
         super.init()
         searchCompleter.delegate = self
 
-
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.requestLocation()
+        }
     }
     
     func locationCount() -> Int {
@@ -57,27 +67,69 @@ class LocationSearchPresenterImpl: NSObject,  LocationSearchPresenter {
     
 }
 
-extension LocationSearchPresenterImpl:CLLocationManagerDelegate{
-    
+extension LocationSearchPresenterImpl{
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch  status {
         case .authorizedAlways, .authorizedWhenInUse:
-            
+
             manager.requestLocation()
         default:
             break
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {return}
-        searchCompleter.region = MKCoordinateRegionMakeWithDistance(location.coordinate, 150, 150)
+        guard let currentLocation = locations.first else {return}
+        searchCompleter.region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 150, 150)
+        
+        getCurrentAddress(currentLocation: currentLocation, completion: { defaultLocation in
+            
+            guard let _ = defaultLocation?.description else {return }
+            self.locationDelegate?.popNextController(location : defaultLocation!)
+            
+        })
     }
-    
+
+    func getCurrentAddress(currentLocation : CLLocation,completion:  @escaping LocationNameBlock)
+    {
+         let geoCoder = CLGeocoder()
+        
+        geoCoder.reverseGeocodeLocation(currentLocation) { placemarks, error in
+            
+            if let _ = error {
+                
+                completion(nil)
+                
+            } else {
+                
+                let placeArray = placemarks
+                
+                var placeMark: CLPlacemark!
+                var locationName = ""
+                
+                placeMark = placeArray?[0]
+                
+                
+                if placeMark.locality != nil {
+                    locationName = placeMark.locality! + ", "
+                }
+                if placeMark.administrativeArea != nil {
+                    locationName = locationName + placeMark.administrativeArea! + ", "
+                }
+                if placeMark.country != nil {
+                    locationName = locationName + placeMark.country!
+                }
+                completion(locationName)
+                
+            }
+        
+        }
+    }
 }
 extension LocationSearchPresenterImpl:UITableViewDataSource{
     

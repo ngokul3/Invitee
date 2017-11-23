@@ -19,6 +19,8 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
     @IBOutlet weak var btnSearch: UIBarButtonItem!
     fileprivate var presenter : LocationSearchPresenter!
     fileprivate var businessMasterControllerMaker: DependencyRegistry.BusinessMasterControllerMaker!
+//    let locationManager = CLLocationManager()
+
     
     func configure(with presenter: LocationSearchPresenter, businessMasterControllerMaker : @escaping DependencyRegistry.BusinessMasterControllerMaker)
     {
