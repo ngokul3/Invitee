@@ -138,8 +138,8 @@ extension BusinessMasterController{
     func showImageDialog(animated: Bool = true) {
         
         // Prepare the popup assets
-        let title = "THIS IS THE DIALOG TITLE"
-        let message = "This is the message section of the popup dialog default view"
+        let title = "TimeOut"
+        let message = "Send your preferences to your friend(s)"
         let image = UIImage(named: "GreenInvite.png")
         
         let popup = PopupDialog(title: title, message: message, image: image)
