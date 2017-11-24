@@ -138,7 +138,7 @@ extension BusinessMasterController{
     func showImageDialog(animated: Bool = true) {
         
         // Prepare the popup assets
-        let title = "TimeOut"
+        let title = "Let's go!"
         let message = "Send your preferences to your friend(s)"
         let image = UIImage(named: "GreenInvite.png")
         
@@ -186,7 +186,7 @@ extension BusinessMasterController{
         businessInfo = ConvertToHTMLTable(businessSelected: businesses.filter({$0.selected == true}))
         
         mailComposer.setMessageBody(businessInfo, isHTML: true)
-        
+        mailComposer.setSubject("Check out these locations that we can go")
         mailComposer.mailComposeDelegate = self
         
         self.present(mailComposer, animated: true, completion: nil)

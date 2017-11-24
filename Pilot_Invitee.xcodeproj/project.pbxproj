@@ -148,13 +148,6 @@
 			name = LocationController;
 			sourceTree = "<group>";
 		};
-		90AF2B6B1FAFEE4200FB4E50 /* PopUp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = PopUp;
-			sourceTree = "<group>";
-		};
 		90D0C9B61F78729400B80694 /* Supporting Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +223,6 @@
 		90DAFA691F6D8A6300583DB2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				90AF2B6B1FAFEE4200FB4E50 /* PopUp */,
 				900A06D01F769EBD00F93496 /* LocationController */,
 				90DAFA741F6D8DB000583DB2 /* BusinessCell */,
 				90DAFA6C1F6D8B8C00583DB2 /* BusinessController */,

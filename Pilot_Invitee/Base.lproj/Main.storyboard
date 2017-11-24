@@ -50,7 +50,8 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Notify" width="372.5" id="KUG-r5-hoE">
+                        <barButtonItem title="Let's go!" width="372.5" id="KUG-r5-hoE">
+                            <color key="tintColor" red="0.31361715330000001" green="0.43617837040000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="clickNotification:" destination="zeJ-co-XL0" id="Fxu-Zs-u2t"/>
                             </connections>
@@ -66,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="1042.4000000000001" y="-465.51724137931041"/>
         </scene>
-        <!--Business Location Finder-->
+        <!--Your Interest-->
         <scene sceneID="HuP-xH-eji">
             <objects>
                 <viewController id="OSg-se-3dg" customClass="BusinessLocationFinder" customModule="Pilot_Invitee" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,7 +137,7 @@
                             <constraint firstItem="Z91-GH-muq" firstAttribute="top" secondItem="Cz4-Xs-q35" secondAttribute="bottom" id="wHR-R3-fud"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="epa-t8-cnb">
+                    <navigationItem key="navigationItem" title="Your Interest" id="epa-t8-cnb">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="R21-41-PAQ">
                             <connections>
                                 <action selector="btnCancelClick:" destination="OSg-se-3dg" id="x6K-0E-v57"/>
