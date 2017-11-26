@@ -43,19 +43,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Skd-fv-rJ6" firstAttribute="leading" secondItem="3KL-in-ZfF" secondAttribute="leading" id="AEk-DJ-EpO"/>
-                            <constraint firstAttribute="trailing" secondItem="Skd-fv-rJ6" secondAttribute="trailing" id="IRe-pt-y2m"/>
-                            <constraint firstItem="Skd-fv-rJ6" firstAttribute="top" secondItem="3KL-in-ZfF" secondAttribute="topMargin" constant="-10" id="gA7-Hp-zpk"/>
-                            <constraint firstAttribute="bottom" secondItem="Skd-fv-rJ6" secondAttribute="bottom" id="s2E-kC-Mc1"/>
+                            <constraint firstAttribute="trailing" secondItem="Skd-fv-rJ6" secondAttribute="trailing" id="IOd-nb-Wxn"/>
+                            <constraint firstItem="Skd-fv-rJ6" firstAttribute="leading" secondItem="3KL-in-ZfF" secondAttribute="leading" id="Ygg-aV-AAl"/>
+                            <constraint firstItem="Skd-fv-rJ6" firstAttribute="top" secondItem="3KL-in-ZfF" secondAttribute="topMargin" constant="-10" id="ixT-BW-5tC"/>
+                            <constraint firstAttribute="bottom" secondItem="Skd-fv-rJ6" secondAttribute="bottom" id="uco-Wb-1PW"/>
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Let's go!" width="372.5" id="KUG-r5-hoE">
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="WtR-ws-DlI"/>
+                        <barButtonItem title="Let's send your choices" width="106" id="KUG-r5-hoE">
                             <color key="tintColor" red="0.31361715330000001" green="0.43617837040000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="clickNotification:" destination="zeJ-co-XL0" id="Fxu-Zs-u2t"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="iF9-cX-YUr"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="a7v-Vc-pmN"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
