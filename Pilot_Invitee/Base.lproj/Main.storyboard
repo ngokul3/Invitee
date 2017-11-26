@@ -109,11 +109,11 @@
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ulv-fv-1zT">
                                         <rect key="frame" x="0.0" y="53" width="375" height="56"/>
                                         <color key="tintColor" red="0.31361715330000001" green="0.43617837040000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="barTintColor" red="0.48156114010000001" green="1" blue="0.89387945960000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="barTintColor" red="0.41960784309999999" green="0.68235294120000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" red="0.48156114010000001" green="1" blue="0.89387945960000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.41960784313725491" green="0.68235294117647061" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="2jf-Yq-q59" firstAttribute="top" secondItem="Z91-GH-muq" secondAttribute="topMargin" id="0Ij-L3-vAP"/>
                                     <constraint firstItem="2jf-Yq-q59" firstAttribute="leading" secondItem="Z91-GH-muq" secondAttribute="leading" constant="8" id="G5J-Il-I0s"/>
@@ -126,7 +126,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.48156114010000001" green="1" blue="0.89387945960000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.41960784309999999" green="0.68235294120000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Z91-GH-muq" firstAttribute="leading" secondItem="skD-mP-Sg6" secondAttribute="leading" id="P6z-hG-2kt"/>
                             <constraint firstItem="xNB-Ul-U1F" firstAttribute="top" secondItem="Z91-GH-muq" secondAttribute="bottom" constant="8" id="Qqk-GZ-irL"/>
@@ -201,7 +201,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Irc-L1-tad">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.48156114010000001" green="1" blue="0.89387945960000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.41960784309999999" green="0.68235294120000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
