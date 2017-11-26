@@ -53,7 +53,7 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
     
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-            txtBusinessType.becomeFirstResponder()
+            searchController.becomeFirstResponder()
     
         }
     func popNextController(location : String)
