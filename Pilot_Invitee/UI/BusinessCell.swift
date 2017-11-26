@@ -60,6 +60,15 @@ extension BusinessCell {
         {
             self.displayAddress.text = businessAddress[0]
         }
+        if(businessAddress.count > 1)
+        {
+            let addressLine2 = businessAddress[1].components(separatedBy: ",")
+            
+            if(addressLine2.count > 0)
+            {
+                self.displayAddress.text = self.displayAddress.text! + ", " + addressLine2[0]
+            }
+        }
     }
     func ratingImage(forRating rating: Int) -> UIImage? {
         let imageName = "\(rating)Stars"

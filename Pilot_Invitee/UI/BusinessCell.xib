@@ -33,7 +33,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TJG-kB-AQm">
                         <rect key="frame" x="6" y="2" width="68" height="73"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessInfo" translatesAutoresizingMaskIntoConstraints="NO" id="vMw-5D-S13">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueInfo" translatesAutoresizingMaskIntoConstraints="NO" id="vMw-5D-S13">
                         <rect key="frame" x="79" y="9" width="26" height="26"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxY-f2-X6e">
@@ -79,6 +79,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="BusinessInfo" width="26" height="26"/>
+        <image name="BlueInfo" width="26" height="26"/>
     </resources>
 </document>

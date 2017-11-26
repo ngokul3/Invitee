@@ -139,11 +139,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Your Interest" id="epa-t8-cnb">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="R21-41-PAQ">
+                            <color key="tintColor" red="0.72307477679999999" green="0.99956943720000002" blue="0.39318758749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="btnCancelClick:" destination="OSg-se-3dg" id="x6K-0E-v57"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="kYc-pl-eMD">
+                            <color key="tintColor" red="0.7230747767857143" green="0.99956943717142854" blue="0.39318758754285721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="btnSearchClick:" destination="OSg-se-3dg" id="tLA-fW-uHT"/>
                             </connections>
