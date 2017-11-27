@@ -13,7 +13,7 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchController: UISearchBar! {
         didSet {
-            searchController.change(textFont: UIFont.systemFont(ofSize: 12.0))
+            searchController.change(textFont: UIFont.systemFont(ofSize: 14.0))
         }
     }
     

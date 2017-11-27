@@ -106,7 +106,7 @@
                                             <constraint firstAttribute="height" constant="38" id="IhB-30-OzQ"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <searchBar contentMode="redraw" placeholder="Location - Town, City..etc" translatesAutoresizingMaskIntoConstraints="NO" id="ulv-fv-1zT">
