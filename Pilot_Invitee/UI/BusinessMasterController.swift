@@ -68,7 +68,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
             {
                 let alert = UIAlertController(title: "Location Not Found", message: "Request got Timedout. Try again after sometime or Specify more exact location", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
-                    NSLog("The \"OK\" alert occured.")
+                  //  NSLog("The \"OK\" alert occured.")
                 }))
                 self.present(alert, animated: true, completion: nil)
             }

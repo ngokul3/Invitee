@@ -78,7 +78,7 @@ class BusinessLocationFinder: UIViewController,LocationDataSourceDelegate {
         {
             let alert = UIAlertController(title: "Location Required", message: "Enter the location that you are interested", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
+                //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true, completion: nil)
             return
