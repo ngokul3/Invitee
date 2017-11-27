@@ -139,7 +139,7 @@ extension BusinessMasterController{
         
         // Prepare the popup assets
         let title = "Let's go!"
-        let message = "Send your preferences to your friend(s)"
+        let message = "Send your chosen places to your friend(s)"
         let image = UIImage(named: "GreenInvite.png")
         
         let popup = PopupDialog(title: title, message: message, image: image)
