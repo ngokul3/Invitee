@@ -162,7 +162,16 @@ extension BusinessMasterController{
         
         buttonThree.addTarget(self, action:#selector(self.messageClicked), for: .touchUpInside)
         
-        popup.addButtons([buttonOne, buttonTwo, buttonThree])
+        
+        
+        let buttonFour = DefaultButton(title: "WhatsApp") {
+            //    self.label.text = "Message)"
+        }
+        
+        buttonFour.addTarget(self, action:#selector(self.whatsAppClicked), for: .touchUpInside)
+        
+        
+        popup.addButtons([buttonOne, buttonTwo, buttonThree, buttonFour])
         
         self.present(popup, animated: animated, completion: nil)
     }
@@ -214,6 +223,23 @@ extension BusinessMasterController{
         
     }
     
+    func whatsAppClicked()
+    {
+        var businessInfo  = String()
+        businessInfo = ConvertToMSGBody(businessSelected: businesses.filter({$0.selected == true}))
+        
+        let urlWhats = "whatsapp://send?text=\(businessInfo)"
+        
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            if let whatsappURL = NSURL(string: urlString) {
+                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                    UIApplication.shared.open(whatsappURL as URL, options : [:] , completionHandler: nil)
+                } else {
+                    print("please install watsapp")
+                }
+            }
+        }
+    }
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -275,12 +301,14 @@ extension BusinessMasterController{
     func ConvertToMSGBody(businessSelected : [Business])-> String{
         
         var itemCount = 1
-        var innerMSGBody = String()
+        var innerMSGBody = "Check out these locations that we can go"
         for business in businessSelected {
             innerMSGBody += String(itemCount) + ") "
             innerMSGBody +=  business.name
-            innerMSGBody += " "
-             itemCount = itemCount + 1
+            innerMSGBody += "   "
+//            innerMSGBody +=  business.url
+//            innerMSGBody += "   "
+            itemCount = itemCount + 1
         }
         
         return innerMSGBody
