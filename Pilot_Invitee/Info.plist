@@ -25,7 +25,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Gokul Narasimhan</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Get Current Location</string>
+	<string>Your current location will be displayed on the location search box and used for finding nearby businesses</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

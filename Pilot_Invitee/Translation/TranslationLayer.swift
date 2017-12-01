@@ -18,8 +18,8 @@ class TranslationLayerImpl: TranslationLayer{
     func createBusinessFromJsonData(_ data: Data) -> [Business] {
         
         print("converting json to DTOs")
-        let json:[String: Any] = try! JSON.value(from: data)
-        guard let businesses: [Business] = try! json.value(for: "businesses")
+        guard let json:[String: Any] = try? JSON.value(from: data) else {return [Business]()}
+        guard let businesses: [Business] = try? json.value(for: "businesses")
             else
         {return [Business]()}
         

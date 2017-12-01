@@ -301,10 +301,10 @@ extension BusinessMasterController{
     func ConvertToMSGBody(businessSelected : [Business])-> String{
         
         var itemCount = 1
-        var innerMSGBody = "Check out these locations that we can go"
+        var innerMSGBody = String()
         for business in businessSelected {
             innerMSGBody += String(itemCount) + ") "
-            innerMSGBody +=  business.name
+            innerMSGBody +=  business.name //+ " at" + business.display_address
             innerMSGBody += "   "
 //            innerMSGBody +=  business.url
 //            innerMSGBody += "   "
