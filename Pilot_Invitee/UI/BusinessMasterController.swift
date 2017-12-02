@@ -17,6 +17,8 @@ protocol BusinessViewDelegate {
 }
 
 class BusinessMasterController: UIViewController, UITableViewDataSource ,UITableViewDelegate, SFSafariViewControllerDelegate , MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, BusinessViewDelegate {
+  
+    
    
     @IBOutlet weak var tableView: UITableView!
 
@@ -30,7 +32,8 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
     fileprivate var businesses = [Business]()
     fileprivate var presenter : BusinessMasterPresenter!
     fileprivate var businessCellMaker : DependencyRegistry.BusinessCellMaker!
- 
+    
+    
     func configure(with presenter: BusinessMasterPresenter,
                    businessCellMaker: @escaping DependencyRegistry.BusinessCellMaker)
     {
@@ -60,7 +63,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
         super.viewDidLoad()
         
         self.navigationController?.setToolbarHidden(false, animated: true)
-     
+      
         BusinessCell.register(with: tableView)
         
         self.presenter.loadData( finished: {
@@ -71,6 +74,7 @@ class BusinessMasterController: UIViewController, UITableViewDataSource ,UITable
                   //  NSLog("The \"OK\" alert occured.")
                 }))
                 self.present(alert, animated: true, completion: nil)
+                
             }
             self.DataReceived()
             
@@ -174,6 +178,7 @@ extension BusinessMasterController{
         popup.addButtons([buttonOne, buttonTwo, buttonThree, buttonFour])
         
         self.present(popup, animated: animated, completion: nil)
+        
     }
     
     
@@ -198,7 +203,12 @@ extension BusinessMasterController{
         mailComposer.setSubject("Check out these locations that we can go")
         mailComposer.mailComposeDelegate = self
         
-        self.present(mailComposer, animated: true, completion: nil)
+        
+        DispatchQueue.main.async(execute: {
+             self.present(mailComposer, animated: true, completion: nil)
+        })
+        
+      
     }
     
     func messageClicked()
@@ -209,19 +219,18 @@ extension BusinessMasterController{
         }
         
         let msgComposer = MFMessageComposeViewController()
-        msgComposer.messageComposeDelegate = self
-        
-        
         var businessInfo  = String()
         
         businessInfo = ConvertToMSGBody(businessSelected: businesses.filter({$0.selected == true}))
-     
+    
         msgComposer.body = businessInfo
-            
-        self.present(msgComposer, animated: true, completion: nil)
+        msgComposer.messageComposeDelegate = self
         
-        
-    }
+        DispatchQueue.main.async(execute: {
+            self.present(msgComposer, animated: true, completion: nil)
+        })
+       
+     }
     
     func whatsAppClicked()
     {
@@ -241,7 +250,8 @@ extension BusinessMasterController{
         }
     }
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        self.dismiss(animated: true, completion: nil)
+       // self.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith: MFMailComposeResult, error: Error?)
     {
@@ -286,8 +296,7 @@ extension BusinessMasterController{
         for business in businessSelected {
             innerHTML += "<tr>"
             innerHTML += "<td> " + String(itemCount) + ") " + "</td>"
-            //innerHTML += "<td>" + "<img src = " + business.image_url + "height=100 width=100 >"
-            innerHTML +=  "<td><a href=" + business.url + ">" +  business.name + "</a>  </td>"
+            innerHTML +=  "<td><a href=" + business.url + ">" +  business.name + business.display_address[1].getTruncatedAddress(firstAddress: "", seperator: " @ ") + "</a>  </td>"
             
             innerHTML += "</tr>"
             itemCount = itemCount + 1
@@ -304,14 +313,18 @@ extension BusinessMasterController{
         var innerMSGBody = String()
         for business in businessSelected {
             innerMSGBody += String(itemCount) + ") "
-            innerMSGBody +=  business.name //+ " at" + business.display_address
-            innerMSGBody += "   "
-//            innerMSGBody +=  business.url
-//            innerMSGBody += "   "
+            
+            innerMSGBody +=  business.name
+            if(business.display_address.count > 1){
+                let truncatedAddress = business.display_address[1].getTruncatedAddress(firstAddress: "", seperator: " @ ")
+                innerMSGBody +=  truncatedAddress
+            }
+            innerMSGBody += "\n"
             itemCount = itemCount + 1
+            
         }
         
-        return innerMSGBody
+         return innerMSGBody
     }
     
 }

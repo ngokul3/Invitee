@@ -60,6 +60,12 @@ extension BusinessCell {
         {
             self.displayAddress.text = businessAddress[0]
         }
+        
+        if(businessAddress.count > 1)
+        {
+            self.displayAddress.text =  businessAddress[1].getTruncatedAddress(firstAddress: businessAddress[0], seperator: ", ")
+        }
+        /*
         if(businessAddress.count > 1)
         {
             let addressLine2 = businessAddress[1].components(separatedBy: ",")
@@ -70,7 +76,7 @@ extension BusinessCell {
             }
         }
         
-       
+       */
         
     }
     func ratingImage(forRating rating: Int) -> UIImage? {
@@ -113,10 +119,6 @@ extension BusinessCell {
         }
         }
         
-        
-        
-    
-    
 }
     
 extension BusinessCell {
@@ -164,26 +166,18 @@ extension BusinessCell {
 }
 
 extension String{
-    func getTruncatedAddress(businessAddress : [String]) -> String
+    
+    func getTruncatedAddress(firstAddress : String, seperator : String) -> String
     {
-        var shortBusinessAddress = String()
-        if(businessAddress.count > 0)
+        var shortBusinessAddress = firstAddress
+        let addressLine = self.components(separatedBy: ",")
+        if(addressLine.count > 0)
         {
-            //self.displayAddress.text =
-            shortBusinessAddress =  businessAddress[0]
-            
-        }
-        if(businessAddress.count > 1)
-        {
-            let addressLine2 = businessAddress[1].components(separatedBy: ",")
-            
-            if(addressLine2.count > 0)
-            {
-                //self.displayAddress.text =
-                shortBusinessAddress =  shortBusinessAddress + ", " + addressLine2[0]
-            }
+           
+            shortBusinessAddress =  shortBusinessAddress + seperator + addressLine[0]
         }
         
         return shortBusinessAddress
     }
+    
 }
